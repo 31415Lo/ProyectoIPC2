@@ -34,11 +34,6 @@ namespace ProyectoIPC2.Controllers
             return View();
         }
 
-        public void mostrar() {
-            Menujuego();
-
-
-        }
 
 
 
