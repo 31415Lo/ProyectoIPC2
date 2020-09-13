@@ -1,0 +1,36 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+body {
+    background: #34b074; /* sirve para colorear el fondo */
+}
+
+
+.inicios {
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 500;
+    font-size: 40px;
+    font-style: italic;
+    color: #000000;
+    background-color: #82b085;
+    border-radius: 15px;
+    border: 4px solid #000000;
+    ;
+}
+
+    .inicios:hover {
+        opacity: 0.6;
+        text-decoration: none;
+    }
+
+#btinicio {
+}

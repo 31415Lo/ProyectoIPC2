@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+</head>
+<body>
+    <div>
+        <h2> Iniciar Sesión </h2>
+        <form method="post" action="@Url.Action("Index", "Login")">
+
+            <label for="usuario">Nombre de usuario :</label>
+            <br>
+            <input type="text" id="usuario" placeholder="Nombre de usuario" name="usuario" required>
+            <br>
+            <label for="contra">Contraseña :</label>
+            <br>
+            <input type="password" id="contra" placeholder=" contraseña" name="pwd" required>
+            <br>
+            <br>
+            <button>Ingresar</button>
+            <br>
+        </form>
+        <br>
+        <a href="@Url.Action("Index", "Home")">Regresar </a>
+        <br>
+        <div>
+            @ViewBag.Correccion
+        </div>
+    </div>
+    <div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Registro de Usuario";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrarse</title>
+
+</head>
+<body>
+    <div>
+        <h2>Registro  de Usuario</h2>
+
+        <form method="post" action="@Url.Action("Index", "Rusuario")">
+            <label for="nombre">Nombres :</label>
+            <br>
+            <input type="text" id="nombre" placeholder="Nombres" name="nombres" required>
+            <br>
+            <label for="apellido">Apellidos :</label>
+            <br>
+            <input type="text" id="apellido" placeholder="Apellidos" name="apellidos" required>
+            <br>
+            <label for="usuario">Nombre de usuario :</label>
+            <br>
+            <input type="text" id="usuario" placeholder="Nombre de usuario" name="usuario" required>
+            <br>
+            <label for="contra">Contraseña :</label>
+            <br>
+            <input type="password" id="contra" placeholder="******" name="contraseña" required>
+            <br>
+            <label for="correo">Correo :</label>
+            <br>
+            <input type="email" id="correo" placeholder="Correo" name="correo" required>
+            <br>
+            <label for="fecha">Fecha de nacimiento : </label>
+            <br>
+            <input type="date" id="fecha" value="" name="f_nac" required>
+            <br>
+
+            <label for="pais">Pais :</label>
+            <br>
+            <input type="text" id="pais" name="pais" placeholder="Pais donde vive">
+            <br>
+            <br>
+            <button>Registrar</button>
+            <br>
+        </form>
+        <br>
+        <a href="@Url.Action("Index", "Home")" >Regresar </button>
+        <br>
+        <div>
+            @ViewBag.Mensaje
+        </div>
+
+    </div>
+    <div>
+    </div>
+</body>
+</html>
+   

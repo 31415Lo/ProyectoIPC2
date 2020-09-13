@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- estas son las cabecera de una pagina con sus respectivas etiquetas -->
+    <meta charset="utf-8">
+    <meta name="Piló Tuy " content="Introduccion a la Programacion y computacion 2">
+    <title>FormularioIPC2E</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Index.css">
+
+</head>
+<body>
+    <div id="imagen_inicio">
+        <center>
+            <section id="im_inicio">
+                <img src="~/images/inicio.png" height="400" width="600">
+                <br />
+                <br />
+                <br />
+            </section>
+        </center>
+
+    </div>
+
+
+
+    <div id="btinicio">
+        <center>
+            <section id="sociales">
+                <!--  value="Create" onclick="location.href='@Url.Action("Login", "Home")'"-->
+                <a href="@Url.Action("Index", "Login")" class="inicios" style="margin-Right: 10px">Ingresar</a>
+                <a href="@Url.Action("Index", "Rusuario")" class="inicios" style="margin-Right: 10px">Registrarse</a>
+            </section>
+        </center>
+
+    </div>
+</body>
+</html>
