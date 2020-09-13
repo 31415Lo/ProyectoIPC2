@@ -28,9 +28,16 @@ namespace ProyectoIPC2.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult Menujuego()
         {
             return View();
+        }
+
+        public void mostrar() {
+            Menujuego();
+
+
         }
 
 
@@ -55,11 +62,9 @@ namespace ProyectoIPC2.Controllers
                 SqlDataReader rd = read.ExecuteReader();
                 if (rd.Read())
                 {
-                    
                     rd.Close();
                     sqlCon.Close();
-                   RedirectToAction("Menujuego","Login");
-
+                  
                 }
                 else
                 {
