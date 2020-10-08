@@ -1,0 +1,100 @@
+﻿body {
+    background-color: #008b8b;
+    
+}
+
+.padre {
+    background-color: black;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.hijo {
+    background-color: #145A32;
+    padding: 10px;
+    margin: 10px;
+    /* IMPORTANTE */
+    display: inline-block;
+}
+.tablero {
+   
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.jugador {
+    background-color: #145A32;
+    padding: 10px;
+    margin: 10px;
+    /* IMPORTANTE */
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+.cont {
+    background: black;
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    float: left;
+    margin-bottom: 0px;
+}
+.cont2 {
+    width: 60px;
+    height: 60px;
+    margin:auto;
+}
+
+.cont3 {
+    background: blue;
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    float: left;
+    margin-bottom: 0px;
+}
+
+
+
+.black {
+
+    background: black !important;
+}
+.white {
+    background: white !important;
+}
+
+.inside {
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+}
+.hid {
+    background: green;
+    width: 58px;
+    height: 58px;
+}
+
+#jugador1 {
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    background:black;
+}
+
+#jugador2 {
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    background:white;
+}

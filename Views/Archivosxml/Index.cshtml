@@ -1,0 +1,136 @@
+﻿
+@Model List<ProyectoIPC2.Models.Lecturaxml>
+
+    @{
+        Layout = null;
+        List<int> indices = new List<int>();
+        for (int i = 0; i <64; i++)
+        {
+            indices.Add(i);
+        }
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/Content/colores.css"
+        <title>Index</title>
+    </head>
+
+    <body>
+
+        <header>
+            <div class="padre">
+                <div class="hijo">
+                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Archivosxml"))
+                    {
+                        <button type="submit" value=27 name="a">
+                            iniciar
+                        </button>
+
+                    }
+
+                </div>
+                <div class="hijo">
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Archivosxml"))
+                    {
+                        <button type="submit" value=27 name="a">
+                            Limpiar
+                        </button>
+
+                    }
+
+                </div>
+
+
+
+                <div class="hijo">
+                    @using (Html.BeginForm("Cargarxml", "Archivosxml", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="file" accept=".xml" /> <button type="submit">Cargar archivo</button>
+
+
+                    }
+                </div>
+
+                <div class="hijo">
+                    <button> guardar partida</button>
+                </div>
+            </div>
+
+        </header>
+
+        <br>
+        <br>
+        <br>
+        <section>
+            <div>
+                <div>
+                    <p> Usuario</p>
+                    <div id="jugador1">
+                    </div>
+                </div>
+                <div>
+                    <p> jugador 2</p>
+                    <div id="jugador2">
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <section>
+            <div class="tableros" id="divocultamuestra">
+
+
+                @using (Html.BeginForm(actionName: "Colores", controllerName: "Archivosxml"))
+
+                {
+                    int contar = 0;
+                    for (int i = 0; i < 64; i++)
+                    {
+                        if (contar == 8 || contar == 17 || contar == 26 || contar == 35 || contar == 44 || contar == 53 || contar == 62)
+                        {
+                            contar += 1;
+                            i -= 1;
+                            <div class="cont2">
+                            </div>
+                        }
+
+                        else
+                        {
+                            contar += 1;
+                            <div class="cont">
+                                <button type="submit" value=@i class="hid" name="a">
+                                    <div class="inside @Model[i].Color">
+                                    </div>
+                                </button>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </section>
+
+
+    </body>
+    @if (ViewBag.ShowAlert != null)
+    {
+        <script>alert("Movimiento no valido");</script>
+
+    }
+
+    @if (ViewBag.Carga != null) {
+    <script type="text/javascript">
+        alert('@ViewBag.Carga');
+    </script>
+    } 
+    </html>

@@ -1,7 +1,56 @@
 ﻿
 @{
-    ViewBag.Title = "Menujuego";
+    ViewBag.Title = "Juego";
 }
 
-<h2>Menujuego</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Opciones de Juego</title>
+
+</head>
+<body>
+    <div>
+        <h2>  Escoja una opción </h2>
+        <br>
+        <br>
+        <input type="button" value="Jugar individual" onclick="location.href='@Url.Action("Index", "Juego")'" />
+        <!--  ACCION DE "INDEX"  es para la actividada a realizar y el controlador se llamara "Juego" -->
+        <br>
+        <br>
+        <button>juego contra oponente</button>
+        <br>
+        <br>
+        <button>jugar torneo </button>
+        <br>
+        <br>
+        <!--<form method="post" action="@Url.Action("Index", "Login")">
+
+        <label for="usuario">Nombre de usuario :</label>
+        <br>
+        <input type="text" id="usuario" placeholder="Nombre de usuario" name="usuario" required>
+        <br>
+        <label for="contra">Contraseña :</label>
+        <br>
+        <input type="password" id="contra" placeholder=" contraseña" name="pwd" required>
+        <br>
+        <br>
+        <button>Ingresar</button>
+
+        <br>
+    </form>
+
+        <br>
+        <a href="@Url.Action("Index", "Home")">Regresar </a>
+        <br>
+        <div>
+            @ViewBag.Correccion
+        </div>
+             -->
+    </div>
+    <div>
+    </div>
+</body>
+</html>

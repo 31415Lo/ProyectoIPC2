@@ -10,12 +10,23 @@ namespace ProyectoIPC2.Controllers
     public class LoginController : Controller
     {
         // GET: Login
+        public ActionResult Index()
+        {
+            
+            return View();
+        }
+
+
+        [HttpPost]
         public ActionResult Index(string usuario, string pwd )
         {
             if (usuario != null )
             {
-                Logueo(usuario,pwd);
-                return View();
+                if (Logueo(usuario, pwd) == true) {
+                    return RedirectToAction("Menujuego");
+                }
+
+                
             }
             return View();
         }
@@ -28,7 +39,7 @@ namespace ProyectoIPC2.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Menujuego()
         {
             return View();
@@ -40,7 +51,7 @@ namespace ProyectoIPC2.Controllers
 
         //----------------------------------------------- LOGIN DE USUARIO-----------------------------------------------------
         
-        public void Logueo( string usuario, string contraseña )
+        public bool Logueo( string usuario, string contraseña )
         {
             try
             {
@@ -59,7 +70,7 @@ namespace ProyectoIPC2.Controllers
                 {
                     rd.Close();
                     sqlCon.Close();
-                  
+                    return  true; 
                 }
                 else
                 {
@@ -70,6 +81,7 @@ namespace ProyectoIPC2.Controllers
             {
                 //MessageBox.Show(ex.ToString());
             }
+            return false;
         }
 
 
