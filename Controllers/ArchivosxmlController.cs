@@ -14,6 +14,8 @@ namespace ProyectoIPC2.Controllers
     {
         static List<Lecturaxml> casillas = new List<Lecturaxml>();
         static bool negro = true;
+        static int mov1 = 0;
+        static int mov2 = 0;
 
 
         // GET: Archivosxml
@@ -26,6 +28,8 @@ namespace ProyectoIPC2.Controllers
                 casillas.Add(lec);
 
             }
+            ViewBag.Movimientos =mov1;
+            ViewBag.Movimientos1 = mov2;
 
             return View(casillas);
 
@@ -40,6 +44,7 @@ namespace ProyectoIPC2.Controllers
             string color2;
             if (negro == true)
             {
+                mov1 += 1;
                 color1 = "black";
                 color2 = "white";
             }
@@ -47,6 +52,7 @@ namespace ProyectoIPC2.Controllers
             {
                 color2 = "black";
                 color1 = "white";
+                mov2 += 1;
             }
 
             int Index = Int32.Parse(a);
@@ -259,6 +265,8 @@ namespace ProyectoIPC2.Controllers
                 {
                     negro = true;
                 }
+               // ViewBag.Movimientos =mov1;
+                //ViewBag.Movimientos1 = mov2;
                 Negro1(general, color1);
             }
             else
@@ -281,7 +289,8 @@ namespace ProyectoIPC2.Controllers
                     Negro2(ll, color);
                 }
             }
-
+            ViewBag.Movimientos = mov1;
+            ViewBag.Movimientos1 = mov2;
             return View("Index", casillas);
         }
         public ActionResult Negro2(List<int> lll, string color)
@@ -295,6 +304,8 @@ namespace ProyectoIPC2.Controllers
                     Negro2(lll, color);
                 }
             }
+            ViewBag.Movimientos = mov1;
+            ViewBag.Movimientos1 = mov2;
             return View("Index", casillas);
         }
 
@@ -309,6 +320,8 @@ namespace ProyectoIPC2.Controllers
             {
                 casillas[i].Color =null;
             }
+            mov1 = 0;
+            mov2 = 0;
             return RedirectToAction("Index"); ;
         }
 
@@ -321,6 +334,8 @@ namespace ProyectoIPC2.Controllers
             int Index = 27;
             casillas[Index].Color = "white";
             Colores3(28);
+            ViewBag.Movimientos = mov1;
+            ViewBag.Movimientos1 = mov2;
             return View("Index", casillas);
         }
         public ActionResult Colores3(int a)
@@ -328,6 +343,8 @@ namespace ProyectoIPC2.Controllers
             if (a == 36)
             {
                 casillas[a].Color = "white";
+                ViewBag.Movimientos = mov1;
+                ViewBag.Movimientos1 = mov2;
                 return View("Index", casillas);
 
             }
@@ -336,6 +353,8 @@ namespace ProyectoIPC2.Controllers
                 int Index = a;
                 casillas[Index].Color = "black";
                 Colores4(35);
+                ViewBag.Movimientos = mov1;
+                ViewBag.Movimientos1 = mov2;
                 return View("Index", casillas);
             }
 
@@ -345,6 +364,8 @@ namespace ProyectoIPC2.Controllers
             int Index = 35;
             casillas[Index].Color = "black";
             Colores3(36);
+            ViewBag.Movimientos = mov1;
+            ViewBag.Movimientos1 = mov2;
             return View("Index", casillas);
         }
 
@@ -358,6 +379,7 @@ namespace ProyectoIPC2.Controllers
             if (a == "v1")
             {
                 List<int> lista1 = new List<int>();
+                lista1.Clear();
                 lista1.Add(0);
                 lista1.Add(8);
                 lista1.Add(16);
@@ -379,6 +401,7 @@ namespace ProyectoIPC2.Controllers
             else if (a == "v2")
             {
                 List<int> lista2 = new List<int>();
+                lista2.Clear();
                 lista2.Add(7);
                 lista2.Add(15);
                 lista2.Add(23);
@@ -399,6 +422,7 @@ namespace ProyectoIPC2.Controllers
             else if (a == "h1")
             {
                 List<int> lista3 = new List<int>();
+                lista3.Clear();
                 lista3.Add(0);
                 lista3.Add(1);
                 lista3.Add(2);
@@ -419,6 +443,7 @@ namespace ProyectoIPC2.Controllers
             else
             {
                 List<int> lista4 = new List<int>();
+                lista4.Clear();
                 lista4.Add(56);
                 lista4.Add(57);
                 lista4.Add(58);
@@ -444,6 +469,7 @@ namespace ProyectoIPC2.Controllers
             if (a == "v1" && c == "h1")
             {
                 List<int> lista1 = new List<int>();
+                lista1.Clear();
                 lista1.Add(0);
                 lista1.Add(8);
                 lista1.Add(16);
@@ -472,6 +498,7 @@ namespace ProyectoIPC2.Controllers
             else if (a == "h1" && c == "v2")
             {
                 List<int> lista2 = new List<int>();
+                lista2.Clear();
                 lista2.Add(7);
                 lista2.Add(15);
                 lista2.Add(23);
@@ -499,6 +526,7 @@ namespace ProyectoIPC2.Controllers
             else if (a == "v2" && c == "h2")
             {
                 List<int> lista3 = new List<int>();
+                lista3.Clear();
                 lista3.Add(7);
                 lista3.Add(15);
                 lista3.Add(23);
@@ -526,6 +554,7 @@ namespace ProyectoIPC2.Controllers
             else if (a == "v1" && c == "h2")
             {
                 List<int> lista4 = new List<int>();
+                lista4.Clear();
                 lista4.Add(56);
                 lista4.Add(57);
                 lista4.Add(58);
@@ -593,6 +622,7 @@ namespace ProyectoIPC2.Controllers
                 }
                 if (Validar(listado))
                 {
+                   
                     Color1(listado, colores);
                 }
                 else {
@@ -619,7 +649,6 @@ namespace ProyectoIPC2.Controllers
                     Color2(ll, cc);
                 }
             }
-
             return View("Index", casillas);
         }
         public ActionResult Color2(List<int> lll, List<string> ccc)
@@ -693,13 +722,18 @@ namespace ProyectoIPC2.Controllers
                     }
                     else
                     {
-                        if (au - 9 == aux[j] || au - 8 == aux[j] || au - 7 == aux[j] || au - 1 == aux[j] || au + 1 == aux[j] || au + 7 == aux[j] || au+8 == aux[j] || au+9 == aux[j])
+                        if ((au-9) == aux[j] || (au-8)== aux[j] || (au-7) == aux[j] || (au-1) == aux[j] || (au+1) == aux[j] || (au+7) == aux[j] || (au+8) == aux[j] || (au+9) == aux[j])
                         {
+                            break;
+                        }
 
-                        }
-                        else {
+                        /*else {
                             return false;
-                        }
+                        }*/
+                    }
+
+                    if (j==aux.Count-1) {
+                        return false;
                     }
                 }
             }

@@ -33,14 +33,13 @@
     /* IMPORTANTE */
     display: inline-block;
 }
-
-
-
-
-
-
-
-
+.datos {
+    background-color:yellow;
+   
+    justify-content: center;
+    text-align: center;
+}
+   
 .cont {
     background: black;
     width: 60px;
@@ -89,12 +88,14 @@
     border-radius: 50px;
     width: 45px;
     height: 45px;
-    background:black;
+    background: black;
+   
 }
 
 #jugador2 {
     border-radius: 50px;
     width: 45px;
     height: 45px;
-    background:white;
+    background: white;
+   
 }
