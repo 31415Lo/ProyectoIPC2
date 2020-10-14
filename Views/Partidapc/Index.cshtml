@@ -4,13 +4,13 @@
     @{
         Layout = null;
         List<int> indices = new List<int>();
-        for (int i = 0; i <64; i++)
+        for (int i = 0; i < 64; i++)
         {
             indices.Add(i);
         }
     }
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
     <html>
     <head>
@@ -28,8 +28,8 @@
                 <div id="logo" class="col-lg-2"> <!--img src="~/images/logo.jpg" width="25"  height="25"--> <p></p></div>
                 <div id="titulo" class="col-lg-6"><p></p> </div>
                 <div id="usuario" class="col-lg-3"> <p></p></div>
-                <div id="salir" class="col-lg-1"> 
-                <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>       
+                <div id="salir" class="col-lg-1">
+                    <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
                 </div>
             </header>
             <nav class="fila">
@@ -39,7 +39,7 @@
                     <li class="col-lg-2">
                         <p> </p>
                     </li>
-                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Partidapc"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>
@@ -48,7 +48,7 @@
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Partidapc"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>
@@ -57,7 +57,7 @@
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "Partidapc"))
                     {
                         <li class="col-lg-2">
                             <button type="submit" name="a">
@@ -65,7 +65,7 @@
                             </button>
                         </li>
                     }
-                    @using (Html.BeginForm("Cargarxml", "Archivosxml", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Cargarxml", "Partidapc", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <li class="col-lg-3">
                             <input type="file" name="file" accept=".xml" />
@@ -79,13 +79,13 @@
                 </ul>
             </nav>
             <!-- SECCION 3 DONDE VA EL JUGADOR Y MOVIMIENYOS-->
-            
-    <section id="seccion3" class="fila">
-        <div class="col-lg-12"> <p> </p> </div>
-    </section>
-                
 
-        
+            <section id="seccion3" class="fila">
+                <div class="col-lg-12"> <p> </p> </div>
+            </section>
+
+
+
             <!-- SECCION DONDE VA EL  TABLERO-->
             <section id="seccionextra" class="fila">
                 <div class="col-lg-4">
@@ -106,13 +106,13 @@
                 </div>
             </section>
             <section id="seccion4" class="fila">
-                <div class="col-lg-3" >
+                <div class="col-lg-3">
                     <center>
                         <h3> Usuario</h3>
                         <label>Movimientos:</label> @ViewBag.movimientos
                     </center>
                     <center>
-                        <h3> Jugador invitado</h3>
+                        <h3> Maquina</h3>
                         <label>Movimientos:</label> @ViewBag.movimientos1
                     </center>
                     <center>
@@ -132,7 +132,7 @@
                     <div id="columna"><h2>8</h2></div>
                 </div>
                 <div class="col-lg-4" id="divocultamuestra">
-                    @using (Html.BeginForm(actionName: "Colores", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Colores", controllerName: "Partidapc"))
 
                     {
                         int contar = 0;
@@ -201,9 +201,10 @@
 
     }
 
-    @if (ViewBag.Carga != null) {
-    <script type="text/javascript">
+    @if (ViewBag.Carga != null)
+    {
+        <script type="text/javascript">
         alert('@ViewBag.Carga');
-    </script>
-    } 
-    </html>
+        </script>
+    }
+</html>

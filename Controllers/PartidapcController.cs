@@ -1,45 +1,41 @@
 ﻿using ProyectoIPC2.Models;
 using System;
-using System.IO;
-using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ProyectoIPC2.Controllers
 {
-    public class ArchivosxmlController : Controller
+    public class PartidapcController : Controller
     {
         static List<Lecturaxml> casillas = new List<Lecturaxml>();
         static bool negro = true;
+        static bool turnomaquina = false;
         static int mov1 = 0;
         static int mov2 = 0;
         static String turno = "Usuario";
-
-
-        // GET: Archivosxml
+        static List<int> pc = new List<int>();
+        // GET: Partidapc
         public ActionResult Index()
         {
             for (int i = 0; i < 64; i++)
-            {
-                Lecturaxml lec = new Lecturaxml();
-                lec.Index = 0;
-                casillas.Add(lec);
-
-            }
-            ViewBag.Movimientos =mov1;
+             {       Lecturaxml lec = new Lecturaxml();
+                    lec.Index = 0;
+                    casillas.Add(lec);
+             }
+            ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
             ViewBag.turno = turno;
 
             return View(casillas);
-
+            
         }
-        //--------------------------------- PARA CAMBIAR DE COLOR DE CADA CIRCULO ----------------------------------------
+
         public ActionResult Colores(string a)
         {
             List<int> general = new List<int>();
@@ -52,7 +48,7 @@ namespace ProyectoIPC2.Controllers
                 mov1 += 1;
                 color1 = "black";
                 color2 = "white";
-                turno = "Jugador Invitado";
+               
             }
             else
             {
@@ -272,17 +268,16 @@ namespace ProyectoIPC2.Controllers
                 {
                     negro = true;
                 }
-               // ViewBag.Movimientos =mov1;
-                //ViewBag.Movimientos1 = mov2;
+                
                 Negro1(general, color1);
+                Thread.Sleep(2000);
+                aleatorio();
             }
             else
             {
                 return View("Index", casillas);
             }
-
             return View("Index", casillas);
-
         }
         // ----------------------------------------------- SE HACEN EL CAMBIO DE COLOR -------------
         public ActionResult Negro1(List<int> ll, string color)
@@ -296,7 +291,6 @@ namespace ProyectoIPC2.Controllers
                     Negro2(ll, color);
                 }
             }
-            ViewBag.turno = turno;
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
             return View("Index", casillas);
@@ -312,9 +306,9 @@ namespace ProyectoIPC2.Controllers
                     Negro2(lll, color);
                 }
             }
-            ViewBag.turno = turno;
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
+            ViewBag.turno = turno;
             return View("Index", casillas);
         }
 
@@ -323,7 +317,7 @@ namespace ProyectoIPC2.Controllers
         {
             for (int i = 0; i < 64; i++)
             {
-                casillas[i].Color =null;
+                casillas[i].Color = null;
             }
             mov1 = 0;
             mov2 = 0;
@@ -334,7 +328,7 @@ namespace ProyectoIPC2.Controllers
         //-------------------    CARGAR FICHAS DE INICIO   ---------------------------------------------
         public ActionResult Colores2()
         {
-            
+
             int Index = 27;
             casillas[Index].Color = "white";
             Colores3(28);
@@ -593,8 +587,8 @@ namespace ProyectoIPC2.Controllers
         {
             List<int> listado = new List<int>();
             List<String> colores = new List<String>();
-           
-            string color="null";
+
+            string color = "null";
             if (file != null)
             {
                 XmlDocument doc = new XmlDocument();
@@ -615,7 +609,8 @@ namespace ProyectoIPC2.Controllers
                         }
                         colores.Add(color);
                     }
-                    else {
+                    else
+                    {
                         ViewBag.Carga = "Archivo no valido";
                         //return RedirectToAction("Index");
 
@@ -623,26 +618,27 @@ namespace ProyectoIPC2.Controllers
                 }
                 if (Validar(listado))
                 {
-                   
+
                     Color1(listado, colores);
                 }
-                else {
-                   ViewBag.Carga ="Archivo no valido"; 
+                else
+                {
+                    ViewBag.Carga = "Archivo no valido";
                     //return RedirectToAction("Index");
                 }
 
-               
+
 
             }
-                    return RedirectToAction("Index"); 
-                
+            return RedirectToAction("Index");
+
         }
         //--------------------------------------- METODO QUE DEVUELVE LA VISTA DEL ARCHIVO CARGADO ------------------------
         public ActionResult Color1(List<int> ll, List<string> cc)
         {
             if (ll.Count() > 0)
             {
-                casillas[ll[0]].Color =cc[0];
+                casillas[ll[0]].Color = cc[0];
                 ll.RemoveAt(0);
                 cc.RemoveAt(0);
                 if (ll.Count > 0)
@@ -667,9 +663,10 @@ namespace ProyectoIPC2.Controllers
             return View("Index", casillas);
         }
         //--------------------------------------- METODO QUE DEVUELVE LA VISTA DEL ARCHIVO CARGADO ------------------------
-        public int Valor(string columna, string fila) {
-            int val=100;
-            if (columna == "A") {val = 0;}
+        public int Valor(string columna, string fila)
+        {
+            int val = 100;
+            if (columna == "A") { val = 0; }
             else if (columna == "B") { val = 1; }
             else if (columna == "C") { val = 2; }
             else if (columna == "D") { val = 3; }
@@ -677,7 +674,7 @@ namespace ProyectoIPC2.Controllers
             else if (columna == "F") { val = 5; }
             else if (columna == "G") { val = 6; }
             else if (columna == "H") { val = 7; }
-            if (fila == "1") { val = val+0; }
+            if (fila == "1") { val = val + 0; }
             else if (fila == "2") { val = val + 8; }
             else if (fila == "3") { val = val + 16; }
             else if (fila == "4") { val = val + 24; }
@@ -689,26 +686,31 @@ namespace ProyectoIPC2.Controllers
         }
         // ---------------------------------  METODO PARA VALIDAR ARCHIVOS CARGADOS --------------------------
 
-        public bool Validar(List<int> ll) {
-           
-            List<int> aux= new List<int>();
+        public bool Validar(List<int> ll)
+        {
+
+            List<int> aux = new List<int>();
             aux.Clear();
 
-            foreach (int a in ll) {
+            foreach (int a in ll)
+            {
                 aux.Add(a);
             }
 
-            for (int i=0;i<ll.Count;i++) {
+            for (int i = 0; i < ll.Count; i++)
+            {
 
                 for (int j = 0; j < aux.Count; j++)
                 {
                     if (i == j)
                     {
                     }
-                    else {
-                        if (ll[i] == aux[j]) {
+                    else
+                    {
+                        if (ll[i] == aux[j])
+                        {
                             return false;
-                        }     
+                        }
                     }
                 }
             }
@@ -723,13 +725,14 @@ namespace ProyectoIPC2.Controllers
                     }
                     else
                     {
-                        if ((au-9) == aux[j] || (au-8)== aux[j] || (au-7) == aux[j] || (au-1) == aux[j] || (au+1) == aux[j] || (au+7) == aux[j] || (au+8) == aux[j] || (au+9) == aux[j])
+                        if ((au - 9) == aux[j] || (au - 8) == aux[j] || (au - 7) == aux[j] || (au - 1) == aux[j] || (au + 1) == aux[j] || (au + 7) == aux[j] || (au + 8) == aux[j] || (au + 9) == aux[j])
                         {
                             break;
                         }
                     }
 
-                    if (j==aux.Count-1) {
+                    if (j == aux.Count - 1)
+                    {
                         return false;
                     }
                 }
@@ -738,19 +741,22 @@ namespace ProyectoIPC2.Controllers
         }
 
         // --------------------------------------------- GUARDAR PARTIDA ------------------------------------------
-        public ActionResult Guardarxml() {
-            string path = @"C:\Users\Pilo kevin\Desktop\IPC 2\ProyectoIPC2\XMLguardados\PartidaContra.xml";
+        public ActionResult Guardarxml()
+        {
+            string path = @"C:\Users\Pilo kevin\Desktop\IPC 2\ProyectoIPC2\XMLguardados\PartidaContraPc.xml";
             Encoding encoding = Encoding.GetEncoding("UTF-8");
 
 
-            XmlTextWriter xmlWriter = new XmlTextWriter( path, encoding);
+            XmlTextWriter xmlWriter = new XmlTextWriter(path, encoding);
 
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteStartDocument();
             xmlWriter.WriteStartElement("tablero");
-            for (int i= 0;i < 64;i++) {
+            for (int i = 0; i < 64; i++)
+            {
 
-                if (casillas[i].Color!=null) {
+                if (casillas[i].Color != null)
+                {
                     xmlWriter.WriteStartElement("ficha");
                     xmlWriter.WriteStartElement("color");
                     xmlWriter.WriteString(Coloresxml(casillas[i].Color));
@@ -771,13 +777,14 @@ namespace ProyectoIPC2.Controllers
             return RedirectToAction("Index");
         }
 
-        public String columnaxml(int c) {
-           String col="";
+        public String columnaxml(int c)
+        {
+            String col = "";
 
             if (c == 0 || c == 8 || c == 16 || c == 24 || c == 32 || c == 40 || c == 48 || c == 56)
             { col = "A"; }
-            else if (c == 1 || c == 9 || c == 17 || c == 25 || c == 33 || c == 41 || c == 49 || c == 57) 
-            { col = "B";  }
+            else if (c == 1 || c == 9 || c == 17 || c == 25 || c == 33 || c == 41 || c == 49 || c == 57)
+            { col = "B"; }
             else if (c == 2 || c == 10 || c == 18 || c == 26 || c == 34 || c == 42 || c == 50 || c == 58)
             { col = "C"; }
             else if (c == 3 || c == 11 || c == 19 || c == 27 || c == 35 || c == 43 || c == 51 || c == 59)
@@ -788,20 +795,20 @@ namespace ProyectoIPC2.Controllers
             { col = "F"; }
             else if (c == 6 || c == 14 || c == 22 || c == 30 || c == 38 || c == 46 || c == 54 || c == 62)
             { col = "G"; }
-            else if (c == 7 || c == 15 || c == 23 || c == 31 || c == 39 || c ==47  || c == 55 || c == 63)
+            else if (c == 7 || c == 15 || c == 23 || c == 31 || c == 39 || c == 47 || c == 55 || c == 63)
             { col = "H"; }
 
-            return col ;
+            return col;
         }
 
         public String filaxml(int c)
         {
             String fila = "";
 
-            if (c<8)
+            if (c < 8)
             { fila = "1"; return fila; }
-            else if (c< 16)
-            { fila = "2";  return fila; }
+            else if (c < 16)
+            { fila = "2"; return fila; }
             else if (c < 24)
             { fila = "3"; return fila; }
             else if (c < 32)
@@ -819,7 +826,8 @@ namespace ProyectoIPC2.Controllers
             return fila;
         }
 
-        public string Coloresxml(string color) {
+        public string Coloresxml(string color)
+        {
             String col = "";
             if (color == "black")
             {
@@ -829,8 +837,512 @@ namespace ProyectoIPC2.Controllers
             return col;
         }
 
+        // --------------------  funcion que permite agregar los indices sin color -----------------
+        public List<int> maquina() {
+            for (int i = 0; i < 64; i++) {
+                if (casillas[i].Color == null) {
+                    pc.Add(i);
+                }
+            }
+            return pc; 
+        }
+        public string aleatorio() {
+            if (pc.Count > 0)
+            {
+            }
+            else {
+                maquina();
+            }
+            Random r1 = new Random();
+            int r2=100;
 
+
+            while (pc.Count > 0)
+            {
+                r2 = r1.Next(pc.Count);
+                if (evalua(r2.ToString()))
+                {
+                    //return r2.ToString();
+                    ColoresmaquinaAsync(r2.ToString());
+                    break;
+                }
+                else {
+                    pc.Remove(Int32.Parse(r2.ToString()));
+                }
+            }
+
+            return r2.ToString();
+        }
+
+        public bool evalua(string a) {
+             List<int> general = new List<int>();
+            List<int> aux = new List<int>();
+            int x1 = Int32.Parse(a);
+            string color1;
+            string color2;
+            color2 = "black";
+            color1 = "white";
+            int Index = Int32.Parse(a);
+
+            // ----------   DEVUELVE SI SE SELECCIONA UN BOTON CON COLOR -----------------------------
+            if (casillas[Index].Color == "black" || casillas[Index].Color == "white")
+            {
+                return false;
+            }
+            //------------------------------------------- CONTROLA LOS BOTONES NEGROS ------------------------------
+            else
+            {
+                // posicion x1
+                while (recorrer("v1", x1))
+                {
+                    if (casillas[x1 - 1].Color == color2)
+                    {
+                        aux.Add(x1 - 1);
+                        x1 -= 1;
+                    }
+                    else if (casillas[x1 - 1].Color == color1)
+                    {
+                        //aux.Add(Index);  agregarlo al final 
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion X2
+                x1 = Index;
+                while (recorrer2("v1", "h1", x1))
+                {
+                    if (casillas[x1 - 9].Color == color2)
+                    {
+                        aux.Add(x1 - 9);
+                        x1 -= 9;
+                    }
+                    else if (casillas[x1 - 9].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion x3
+                x1 = Index;
+                while (recorrer("h1", x1))
+                {
+                    if (casillas[x1 - 8].Color == color2)
+                    {
+                        aux.Add(x1 - 8);
+                        x1 -= 8;
+                    }
+                    else if (casillas[x1 - 8].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion X4
+                x1 = Index;
+                while (recorrer2("h1", "v2", x1))
+                {
+                    if (casillas[x1 - 7].Color == color2)
+                    {
+                        aux.Add(x1 - 7);
+                        x1 -= 7;
+                    }
+                    else if (casillas[x1 - 7].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion x5
+                x1 = Index;
+                while (recorrer("v2", x1))
+                {
+                    if (casillas[x1 + 1].Color == color2)
+                    {
+                        aux.Add(x1 + 1);
+                        x1 += 1;
+                    }
+                    else if (casillas[x1 + 1].Color == color1)
+                    {
+
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion X6
+                x1 = Index;
+                while (recorrer2("v2", "h2", x1))
+                {
+                    if (casillas[x1 + 9].Color == color2)
+                    {
+                        aux.Add(x1 + 9);
+                        x1 += 9;
+                    }
+                    else if (casillas[x1 + 9].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion x7
+                x1 = Index;
+                while (recorrer("h2", x1))
+                {
+                    if (casillas[x1 + 8].Color == color2)
+                    {
+                        aux.Add(x1 + 8);
+                        x1 += 8;
+                    }
+                    else if (casillas[x1 + 8].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion X8
+                x1 = Index;
+                while (recorrer2("v1", "h2", x1))
+                {
+                    if (casillas[x1 + 7].Color == color2)
+                    {
+                        aux.Add(x1 + 7);
+                        x1 += 7;
+                    }
+                    else if (casillas[x1 + 7].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+            }
+            if (general.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public async Task<ActionResult> ColoresmaquinaAsync(string a)
+        {
+            
+           
+            List<int> general = new List<int>();
+            List<int> aux = new List<int>();
+            int x1 = Int32.Parse(a);
+            string color1;
+            string color2;
+            if (negro == true)
+            {
+                mov1 += 1;
+                color1 = "black";
+                color2 = "white";
+               
+            }
+            else
+            {
+                color2 = "black";
+                color1 = "white";
+                mov2 += 1;
+                turno = "Usuario";
+            }
+
+            int Index = Int32.Parse(a);
+
+            // ----------   DEVUELVE SI SE SELECCIONA UN BOTON CON COLOR -----------------------------
+            if (casillas[Index].Color == "black" || casillas[Index].Color == "white")
+            {
+                ViewBag.ShowAlert = true;
+            }
+            //------------------------------------------- CONTROLA LOS BOTONES NEGROS ------------------------------
+            else
+            {
+                // posicion x1
+                while (recorrer("v1", x1))
+                {
+                    if (casillas[x1 - 1].Color == color2)
+                    {
+                        aux.Add(x1 - 1);
+                        x1 -= 1;
+                    }
+                    else if (casillas[x1 - 1].Color == color1)
+                    {
+                        //aux.Add(Index);  agregarlo al final 
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion X2
+                x1 = Index;
+                while (recorrer2("v1", "h1", x1))
+                {
+                    if (casillas[x1 - 9].Color == color2)
+                    {
+                        aux.Add(x1 - 9);
+                        x1 -= 9;
+                    }
+                    else if (casillas[x1 - 9].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion x3
+                x1 = Index;
+                while (recorrer("h1", x1))
+                {
+                    if (casillas[x1 - 8].Color == color2)
+                    {
+                        aux.Add(x1 - 8);
+                        x1 -= 8;
+                    }
+                    else if (casillas[x1 - 8].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion X4
+                x1 = Index;
+                while (recorrer2("h1", "v2", x1))
+                {
+                    if (casillas[x1 - 7].Color == color2)
+                    {
+                        aux.Add(x1 - 7);
+                        x1 -= 7;
+                    }
+                    else if (casillas[x1 - 7].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion x5
+                x1 = Index;
+                while (recorrer("v2", x1))
+                {
+                    if (casillas[x1 + 1].Color == color2)
+                    {
+                        aux.Add(x1 + 1);
+                        x1 += 1;
+                    }
+                    else if (casillas[x1 + 1].Color == color1)
+                    {
+
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+
+                // posicion X6
+                x1 = Index;
+                while (recorrer2("v2", "h2", x1))
+                {
+                    if (casillas[x1 + 9].Color == color2)
+                    {
+                        aux.Add(x1 + 9);
+                        x1 += 9;
+                    }
+                    else if (casillas[x1 + 9].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion x7
+                x1 = Index;
+                while (recorrer("h2", x1))
+                {
+                    if (casillas[x1 + 8].Color == color2)
+                    {
+                        aux.Add(x1 + 8);
+                        x1 += 8;
+                    }
+                    else if (casillas[x1 + 8].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+                // posicion X8
+                x1 = Index;
+                while (recorrer2("v1", "h2", x1))
+                {
+                    if (casillas[x1 + 7].Color == color2)
+                    {
+                        aux.Add(x1 + 7);
+                        x1 += 7;
+                    }
+                    else if (casillas[x1 + 7].Color == color1)
+                    {
+                        foreach (int ele in aux)
+                        {
+                            general.Add(ele);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        aux.Clear();
+                        break;
+                    }
+                }
+            }
+            if (general.Count > 0)
+            {
+                general.Add(Index);
+                if (negro)
+                {
+                    negro = false;
+
+
+                }
+                else
+                {
+                    negro = true;
+                }
+               // await Task.Delay(2000);
+                Negro1(general, color1);
+            }   
+            else
+            {
+                return View("Index", casillas);
+            }
+
+            return View("Index", casillas);
+
+        }
 
 
     }
+
+
+
 }

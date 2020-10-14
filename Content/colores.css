@@ -3,21 +3,121 @@
     
 }
 
-.padre {
-    background-color: black;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+
+[class*="col-"] {
+    float: left;
+    /*border:1px solid black;*/
+   /* padding: 10px;*/
+}
+.fila {
+    position:relative;
+    margin:auto;
+    width:100%;
+    clear:both;
+    display:table;
 }
 
-.hijo {
-    background-color: #145A32;
-    padding: 10px;
-    margin: 10px;
-    /* IMPORTANTE */
-    display: inline-block;
+
+/* FILA SECCION 1 */
+header #logo { /*LOGOTIPO*/
+    font-family: 'kaushan Script',cursive,white;
+    font-size: 50px; /*anchura del div*/
+    color: white;
+    text-align: center;
+    line-height: 60px; /* altura */
+   
 }
+
+header #titulo {
+    font-family: 'kaushan Script',cursive;
+    font-size: 80px; /*anchura del div*/
+    color: white;
+    text-align: center;
+    line-height: 60px; 
+   
+}
+/*---------SECCION 2 BOTONES ----------  */
+nav ul li {
+    /*padding:10px;*/
+    text-align: center;
+    list-style: none;
+}
+nav ul li button {
+        display: block;
+        background: #065558;
+        font-family: 'kaushan Script',cursive;
+        color: white;
+        line-height: 48px;
+        border-radius: 10px;
+}
+nav ul li input {
+        display: block;
+        background: #065558;
+        font-family: 'kaushan Script',cursive;
+        color: white;
+        line-height: 48px;
+        border-radius: 10px;
+}
+
+/*------ SECCION 3  TABLA DONDE ESTA LA INFORMACION DE LOS JUGADORES*/
+
+#seccion4 center    {
+    padding:0px;
+
+}
+#seccion4 h3 {
+    font-family: 'kaushan Script',cursive;
+    font-size:20px;
+    padding: 0px;
+}
+#seccion4  label {
+    font-family: 'kaushan Script',cursive;
+    font-size: 15px;
+    padding: 0px;
+}
+/*------ SECCION 4 TABLA DE COLUMNAS Y DE FILAS */
+#seccion4 #columna h1 {
+    width: 50px;
+    height: 50px;
+    margin: 1.3px;
+    border: black 2px solid;
+    background: #806108;
+    text-align: center;
+    font-family: 'Josefin Sans',cursive;
+    font-size: 30px;
+    color: black;
+}
+#seccion4 #columna h2 {
+    width: 50px;
+    height: 50px;
+    margin:auto;
+    margin-bottom:1.3px;
+    margin-left: 53.3px;
+    border: black 2px solid;
+    background: #806108;
+    text-align: center;
+    font-family: 'Josefin Sans',cursive;
+    font-size: 30px;
+    color: black;
+}
+#seccionextra #filas {
+    float: left;
+    width: 55.4px;
+    height: 50px;
+}
+#seccionextra #filas h2 {
+    
+    margin-top:1px;
+    border: black 2px solid;
+    background: #806108;
+    text-align: center;
+    font-family: 'Josefin Sans',cursive;
+    font-size: 30px;
+    color: black;
+}
+
+
+
 .tablero {
    
     position: absolute;
@@ -33,35 +133,22 @@
     /* IMPORTANTE */
     display: inline-block;
 }
-.datos {
-    background-color:yellow;
-   
-    justify-content: center;
-    text-align: center;
-}
-   
+
+
 .cont {
     background: black;
-    width: 60px;
-    height: 60px;
+    width: 55.54px;
+    height: 55.54px;
     margin: auto;
     float: left;
     margin-bottom: 0px;
 }
 .cont2 {
-    width: 60px;
-    height: 60px;
-    margin:auto;
+    width: 55.53px;
+    height: 55.53px;
+    margin: auto;
 }
 
-.cont3 {
-    background: blue;
-    width: 60px;
-    height: 60px;
-    margin: auto;
-    float: left;
-    margin-bottom: 0px;
-}
 
 
 
@@ -75,27 +162,34 @@
 
 .inside {
     border-radius: 50px;
-    width: 45px;
-    height: 45px;
+    width: 46.5px;
+    height:47px;
 }
 .hid {
     background: green;
-    width: 58px;
-    height: 58px;
+    width: 57px;
+    height: 57px;
 }
 
-#jugador1 {
-    border-radius: 50px;
-    width: 45px;
-    height: 45px;
-    background: black;
-   
+
+/*=============================================
+PANTALLA DE ESCRITORIO GRANDE - LARGE (lg) - revisamos en portatil o pc
+=============================================*/
+
+@media(min-width:1200px){
+
+	.col-lg-12{width:100%;}
+	.col-lg-11{width:91.66666667%;}
+	.col-lg-10{width:83.33333333%;}
+	.col-lg-9{width:75%;}
+	.col-lg-8{width:66.66666667%;}
+	.col-lg-7{width:58.33333333%;}
+	.col-lg-6{width:50%;}
+	.col-lg-5{width:41.66666667%;}
+	.col-lg-4{width: 33.33333333%;}
+	.col-lg-3{width: 25%;}
+	.col-lg-2 {width: 16.66666667%;}
+	.col-lg-1 {width: 8.33333333%;}
+
 }
 
-#jugador2 {
-    border-radius: 50px;
-    width: 45px;
-    height: 45px;
-    background: white;
-   
-}
