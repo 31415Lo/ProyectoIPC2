@@ -125,6 +125,7 @@
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PartidapcController.cs" />
+    <Compile Include="Controllers\RetoInversoController.cs" />
     <Compile Include="Controllers\RusuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,6 +140,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colores.css" />
+    <Content Include="Content\estilo.css" />
     <Content Include="Content\Index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -179,6 +181,7 @@
     <Content Include="Views\Juego\Index.cshtml" />
     <Content Include="Views\Archivosxml\Index.cshtml" />
     <Content Include="Views\Partidapc\Index.cshtml" />
+    <Content Include="Views\RetoInverso\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

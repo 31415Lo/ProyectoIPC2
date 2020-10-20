@@ -1,56 +1,91 @@
 ﻿
 @{
-    ViewBag.Title = "Juego";
+    ViewBag.Title = "Opciones de Juego";
 }
 
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Opciones de Juego</title>
+    <title>Menu Desplegable</title>
+    <style type="text/css">
 
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #header {
+            margin: auto;
+            width: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        .nav > li {
+            float: left;
+        }
+
+        .nav li a {
+            background-color: #088053;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 12px;
+            display: block;
+        }
+
+            .nav li a:hover {
+                background-color: #434343;
+            }
+
+        .nav li ul {
+            display: none;
+            position: absolute;
+            min-width: 140px;
+        }
+
+        .nav li:hover > ul {
+            display: block;
+        }
+
+        .nav li ul li {
+            position: relative;
+        }
+
+            .nav li ul li ul {
+                right: -140px;
+                top: 0px;
+            }
+    </style>
 </head>
 <body>
-    <div>
-        <h2>  Escoja una opción </h2>
-        <br>
-        <br>
-        <input type="button" value="Partida individual" onclick="location.href='@Url.Action("Index", "Partidapc")'" />
-        <!--  ACCION DE "INDEX"  es para la actividada a realizar y el controlador se llamara "Juego" -->
-        <br>
-        <br>
-        <button onclick="location.href='@Url.Action("Index", "Archivosxml")'">Partida contra oponente</button>
-        <br>
-        <br>
-        <button>jugar torneo </button>
-        <br>
-        <br>
-        <!--<form method="post" action="@Url.Action("Index", "Login")">
-
-        <label for="usuario">Nombre de usuario :</label>
-        <br>
-        <input type="text" id="usuario" placeholder="Nombre de usuario" name="usuario" required>
-        <br>
-        <label for="contra">Contraseña :</label>
-        <br>
-        <input type="password" id="contra" placeholder=" contraseña" name="pwd" required>
-        <br>
-        <br>
-        <button>Ingresar</button>
-
-        <br>
-    </form>
-
-        <br>
-        <a href="@Url.Action("Index", "Home")">Regresar </a>
-        <br>
-        <div>
-            @ViewBag.Correccion
-        </div>
-             -->
-    </div>
-    <div>
+    <div id="header">
+        <ul class="nav">
+            <li><a href="">Inicio</a></li>
+            <li>
+                <a href="">Partida Contra jugador </a>
+                <ul>
+                    <li><a href="@Url.Action("Index", "Archivosxml")">Othello </a></li>
+                    <li><a href="@Url.Action("Index", "RetoInverso")">Reto Inverso</a></li>
+                    <li><a href="">Apertura personalizada</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <a href="'@Url.Action("Index", "Partidapc")'">Partida contra Maquina</a>
+                <ul>
+                    <li><a href="">Submenu1</a></li>
+                    <li><a href="">Submenu2</a></li>
+                    <li><a href="">Submenu3</a></li>
+                    <li><a href="">Submenu4</a></li>
+                </ul>
+            </li>
+            <li><a href="">Contacto</a></li>
+        </ul>
     </div>
 </body>
 </html>
+

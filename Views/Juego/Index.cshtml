@@ -5,38 +5,94 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Navbar</title>
-    <!--link rel="stylesheet" href="navbar.css"-->
+    <title>Menu Desplegable</title>
+    <style type="text/css">
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #header {
+            margin: auto;
+            width: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        .nav > li {
+            float: left;
+        }
+
+        .nav li a {
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 12px;
+            display: block;
+        }
+
+            .nav li a:hover {
+                background-color: #434343;
+            }
+
+        .nav li ul {
+            display: none;
+            position: absolute;
+            min-width: 140px;
+        }
+
+        .nav li:hover > ul {
+            display: block;
+        }
+
+        .nav li ul li {
+            position: relative;
+        }
+
+            .nav li ul li ul {
+                right: -140px;
+                top: 0px;
+            }
+    </style>
 </head>
 <body>
-    <nav>
-        <button class="nav-boton" onclick="accion()">Partida contra jugador</button>
-        <button class="nav-boton" onclick="accion()">Partida contra La maquina</button>
-        <button class="nav-boton" onclick="accion()">Cargar partida</button>
-        <button class="nav-boton" onclick="accion()">Salir</button>
-        <!--
-    <a href="#" class="nav-enlace desaparece">Partida Contra jugador</a>
-    <a href="#" class="nav-enlace desaparece">Partida Contra jugador</a>
-    <a href="#" class="nav-enlace desaparece">Cargar Partida</a>
-    <a href="#" class="nav-enlace desaparece">Servicios</a>
-    <a href="#" class="nav-enlace desaparece">Contacto</a>
-    -->
-    </nav>
-
-        <script>
-            function accion() {
-                console.log('está funcionando mi boton');
-                var ancla = document.getElementsByClassName('nav-enlace');
-                for (var i = 0; i < ancla.length; i++) {
-                    ancla[i].classList.toggle('desaparece');
-                }
-            }
-        </script>
-    </body>
-    </html>
-   
+    <div id="header">
+        <ul class="nav">
+            <li><a href="">Inicio</a></li>
+            <li>
+                <a href="">Servicios</a>
+                <ul>
+                    <li><a href="">Submenu1</a></li>
+                    <li><a href="">Submenu2</a></li>
+                    <li><a href="">Submenu3</a></li>
+                    <li>
+                        <a href="">Submenu4</a>
+                        <ul>
+                            <li><a href="">Submenu1</a></li>
+                            <li><a href="">Submenu2</a></li>
+                            <li><a href="">Submenu3</a></li>
+                            <li><a href="">Submenu4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Acerca de</a>
+                <ul>
+                    <li><a href="">Submenu1</a></li>
+                    <li><a href="">Submenu2</a></li>
+                    <li><a href="">Submenu3</a></li>
+                    <li><a href="">Submenu4</a></li>
+                </ul>
+            </li>
+            <li><a href="">Contacto</a></li>
+        </ul>
+    </div>
+</body>
+</html>
