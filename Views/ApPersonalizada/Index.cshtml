@@ -1,5 +1,4 @@
-﻿
-@Model List<ProyectoIPC2.Models.Lecturaxml>
+﻿@Model List<ProyectoIPC2.Models.Lecturaxml>
 
     @{
         Layout = null;
@@ -26,7 +25,7 @@
             <header class="fila">
                 <!-- seccion del header donde va el logo-->
                 <div id="logo" class="col-lg-4">
-                    <!--img src="~/images/logo.jpg" width="25"  height="25"--> 
+                    <!--img src="~/images/logo.jpg" width="25"  height="25"-->
                     <label>Ganador:</label> @ViewBag.Ganador
 
                 </div>
@@ -43,7 +42,7 @@
                     <li class="col-lg-2">
                         <p> </p>
                     </li>
-                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "RetoInverso"))
+                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "ApPersonalizada"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>
@@ -52,7 +51,7 @@
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "RetoInverso"))
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "ApPersonalizada"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>
@@ -61,7 +60,7 @@
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "RetoInverso"))
+                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "ApPersonalizada"))
                     {
                         <li class="col-lg-2">
                             <button type="submit" name="a">
@@ -69,7 +68,7 @@
                             </button>
                         </li>
                     }
-                    @using (Html.BeginForm("Cargarxml", "RetoInverso", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Cargarxml", "ApPersonalizada", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <li class="col-lg-3">
                             <input type="file" name="file" accept=".xml" />
@@ -110,7 +109,21 @@
                 </div>
             </section>
             <section id="seccion4" class="fila">
-                <div class="col-lg-3">
+                <div class="col-lg-1">
+                    <center>
+                       
+                        <form method="post" action="">
+                            <h3>Colores</h3>
+                            <input name="AreChecked" type="checkbox" value="" />Cafe<br />
+                            <input name="AreChecked" type="checkbox" value="" />Morado<br />
+                            <input name="AreChecked" type="checkbox" value="" />Celeste<br />
+                            <input name="AreChecked" type="checkbox" value="" />Naranja<br />
+                            <input name="AreChecked" type="checkbox" value="" />Beige<br />
+                           
+                        </form>
+                        </center>
+                </div>
+                <div class="col-lg-2">
                     <center>
                         <h3> Usuario</h3>
                         <label>Movimientos:</label> @ViewBag.movimientos
@@ -120,8 +133,7 @@
                         <label>Punteo:</label> @ViewBag.Punteo1
                     </center>
                     <center>
-                        <h3> Cronometro </h3>
-                        <label>Cronometro:</label> @ViewBag.cronometro1
+                       
                     </center>
 
                 </div>
@@ -136,7 +148,7 @@
                     <div id="columna"><h2>8</h2></div>
                 </div>
                 <div class="col-lg-4" id="divocultamuestra">
-                    @using (Html.BeginForm(actionName: "Colores", controllerName: "RetoInverso"))
+                    @using (Html.BeginForm(actionName: "Colores", controllerName: "ApPersonalizada"))
 
                     {
                         int contar = 0;
@@ -172,22 +184,34 @@
                     <div id="columna"><h1>7</h1></div>
                     <div id="columna"><h1>8</h1></div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="col-lg-3">
+                <div class="col-lg-2">
+                    <div class="col-lg-2">
                         <center>
                             <h3> Jugador invitado</h3>
                             <label>Movimientos:</label>@ViewBag.movimientos1
                         </center>
                         <center>
-                            <h3> Punteo</h3>
+                            <h3> Jugador invitado</h3>
                             <label>Punteo:</label>@ViewBag.punteo2
-                        </center>
-                        <center>
-                            <h3> Cronometro </h3>
-                            <label>Cronometro:</label> @ViewBag.Cronometro
                         </center>
 
                     </div>
+
+                </div>
+                <div class="col-lg-1">
+                    <center>
+
+                        <form method="post" action="">
+                            <h3>Colores</h3>
+                            <input name="AreChecked" type="checkbox" value="" />Blanco<br />
+                            <input name="AreChecked" type="checkbox" value="" />Rojo<br />
+                            <input name="AreChecked" type="checkbox" value="" />Azul<br />
+                            <input name="AreChecked" type="checkbox" value="" />Negro<br />
+                            <input name="AreChecked" type="checkbox" value="" />Amarillo<br />
+
+                        </form>
+                       
+                    </center>
                 </div>
             </section>
             <section id="seccionextra" class="fila">

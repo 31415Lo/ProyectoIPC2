@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace ProyectoIPC2.Controllers
 {
-    public class RetoInversoController : Controller
+    public class ApPersonalizadaController : Controller
     {
         static List<Lecturaxml> casillas = new List<Lecturaxml>();
         static bool negro = true;
@@ -391,7 +391,7 @@ namespace ProyectoIPC2.Controllers
             ViewBag.turno = turno;
             ViewBag.punteo1 = 0;
             ViewBag.punteo2 = 0;
-            ViewBag.Ganador ="";
+            ViewBag.Ganador = "";
             return View("Index", casillas);
         }
 
@@ -866,16 +866,18 @@ namespace ProyectoIPC2.Controllers
 
 
         // ---------------------------------- CONTAR PUNTEO ---------------------------
-        public void  punteo()
+        public void punteo()
         {
             punte1 = 0;
             punte2 = 0;
             for (int i = 0; i < 64; i++)
             {
-                if (casillas[i].Color == "black") {
+                if (casillas[i].Color == "black")
+                {
                     punte1 += 1;
                 }
-                else if (casillas[i].Color == "white") {
+                else if (casillas[i].Color == "white")
+                {
                     punte2 += 1;
                 }
             }
@@ -888,7 +890,8 @@ namespace ProyectoIPC2.Controllers
             {
                 ganador = "Jugador Invitado";
             }
-            else {
+            else
+            {
                 ganador = "Empate";
             }
         }

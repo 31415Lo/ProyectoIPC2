@@ -13,6 +13,8 @@ namespace ProyectoIPC2.Models
         public int fila { get; set; }
 
         public int Index { get; set; }
+
+
       
     }
 }

@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApPersonalizadaController.cs" />
     <Compile Include="Controllers\ArchivosxmlController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JuegoController.cs" />
@@ -182,6 +183,7 @@
     <Content Include="Views\Archivosxml\Index.cshtml" />
     <Content Include="Views\Partidapc\Index.cshtml" />
     <Content Include="Views\RetoInverso\Index.cshtml" />
+    <Content Include="Views\ApPersonalizada\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

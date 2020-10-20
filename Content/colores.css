@@ -21,7 +21,7 @@
 /* FILA SECCION 1 */
 header #logo { /*LOGOTIPO*/
     font-family: 'kaushan Script',cursive,white;
-    font-size: 50px; /*anchura del div*/
+    font-size: 20px; /*anchura del div*/
     color: white;
     text-align: center;
     line-height: 60px; /* altura */
