@@ -15,6 +15,8 @@ namespace ProyectoIPC2.Controllers
         static bool negro = true;
         static int mov1 = 0;
         static int mov2 = 0;
+        static int punte1 = 0;
+        static int punte2 = 0;
         static String turno = "Usuario";
         // GET: RetoInverso
         public ActionResult Index()
@@ -28,6 +30,8 @@ namespace ProyectoIPC2.Controllers
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
             ViewBag.turno = turno;
+            ViewBag.punteo1 = punte1;
+            ViewBag.punteo2 = punte2;
 
             return View(casillas);
         }
@@ -269,9 +273,16 @@ namespace ProyectoIPC2.Controllers
             }
             else
             {
+                ViewBag.Movimientos = mov1;
+                ViewBag.Movimientos1 = mov2;
+                ViewBag.punteo1 = punte1;
+                ViewBag.punteo2 = punte2;
                 return View("Index", casillas);
             }
-
+            ViewBag.Movimientos = mov1;
+            ViewBag.Movimientos1 = mov2;
+            ViewBag.punteo1 = punte1;
+            ViewBag.punteo2 = punte2;
             return View("Index", casillas);
 
         }
@@ -290,6 +301,9 @@ namespace ProyectoIPC2.Controllers
             ViewBag.turno = turno;
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
+            punteo();
+            ViewBag.punteo1 = punte1;
+            ViewBag.punteo2 = punte2;
             return View("Index", casillas);
         }
         public ActionResult Negro2(List<int> lll, string color)
@@ -306,6 +320,9 @@ namespace ProyectoIPC2.Controllers
             ViewBag.turno = turno;
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
+            punteo();
+            ViewBag.punteo1 = punte1;
+            ViewBag.punteo2 = punte2;
             return View("Index", casillas);
         }
 
@@ -318,6 +335,8 @@ namespace ProyectoIPC2.Controllers
             }
             mov1 = 0;
             mov2 = 0;
+            punte1 = 0;
+            punte2 = 0;
             turno = "Usuario";
             return RedirectToAction("Index"); ;
         }
@@ -331,6 +350,7 @@ namespace ProyectoIPC2.Controllers
             Colores3(28);
             ViewBag.Movimientos = mov1;
             ViewBag.Movimientos1 = mov2;
+            
             return View("Index", casillas);
         }
         public ActionResult Colores3(int a)
@@ -363,6 +383,8 @@ namespace ProyectoIPC2.Controllers
             ViewBag.Movimientos1 = mov2;
             turno = "Usuario";
             ViewBag.turno = turno;
+            ViewBag.punteo1 = 0;
+            ViewBag.punteo2 = 0;
             return View("Index", casillas);
         }
 
@@ -836,7 +858,21 @@ namespace ProyectoIPC2.Controllers
 
 
 
-
+        // ---------------------------------- CONTAR PUNTEO ---------------------------
+        public void  punteo()
+        {
+            punte1 = 0;
+            punte2 = 0;
+            for (int i = 0; i < 64; i++)
+            {
+                if (casillas[i].Color == "black") {
+                    punte1 += 1;
+                }
+                else if (casillas[i].Color == "white") {
+                    punte2 += 1;
+                }
+            }
+        }
 
 
 
