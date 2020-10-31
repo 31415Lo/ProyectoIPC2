@@ -125,6 +125,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OthelloxtrColoresController.cs" />
+    <Compile Include="Controllers\OthelloxtremeController.cs" />
     <Compile Include="Controllers\PartidapcController.cs" />
     <Compile Include="Controllers\RetoInversoController.cs" />
     <Compile Include="Controllers\RusuarioController.cs" />
@@ -132,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Lecturaxml.cs" />
+    <Compile Include="Models\Othelloxtreme.cs" />
     <Compile Include="Models\Rusuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -143,6 +146,7 @@
     <Content Include="Content\colores.css" />
     <Content Include="Content\estilo.css" />
     <Content Include="Content\Index.css" />
+    <Content Include="Content\Xtremecolores.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -184,9 +188,11 @@
     <Content Include="Views\Partidapc\Index.cshtml" />
     <Content Include="Views\RetoInverso\Index.cshtml" />
     <Content Include="Views\ApPersonalizada\Index.cshtml" />
+    <Content Include="Views\OthelloxtrColores\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Othelloxtreme\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

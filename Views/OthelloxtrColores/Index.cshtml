@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "OthelloXtreme";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Xtremecolores.css"
+    
+</head>
+
+<body>
+    <!--SECCION  1-->
+    <div>
+        <!-- Contenedor Principal -->
+        <header class="fila">
+            <!-- seccion del header donde va el logo-->
+            <div id="logo" class="col-lg-4">
+                <!--img src="~/images/logo.jpg" width="25"  height="25"-->
+                <label>  </label>
+
+            </div>
+            <div id="titulo" class="col-lg-4"><p>OPCIONES DE JUEGO</p> </div>
+            <div id="usuario" class="col-lg-3"> <p></p></div>
+            <div id="salir" class="col-lg-1">
+                <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+            </div>
+        </header>
+        <!-- FINALIZA SECCION  1-->
+        <!-- INICIA SECCION 2-->
+
+
+        <section class="fila" id="section2">
+            <div class="col-lg-4">
+                <h2> USUARIO </h2>
+
+            </div>
+
+            <div class="col-lg-4">
+                <h1> OTHELLO XTREME </h1>
+                <br />
+                <h3> Tamaño del tablero </h3>
+            </div>
+            <div class="col-lg-4">
+                <h2> USUARIO INVITADO  </h2>
+            </div>
+
+        </section>
+        <!--  FINALIZA SECCION  2-->
+        <!--  INICIA  SECCION  3-->
+    <form method="post" action="@Url.Action("Index", "Othelloxtreme")" id="form" name="form">
+        <section class="fila" id="section3">
+            <div class="col-lg-4">
+                <h2> USUARIO </h2>
+                <label for="colores"> Color de Fichas</label>
+                <br />
+                <select id="color1" name="color1" multiple="multiple">
+                    
+                    <option value=1 selected> Negro </option>
+                    <option value=2 > Rojo </option>
+                    <option value=3> Amarillo </option>
+                    <option value=4> Azul </option>
+                    <option value=5> Anaranjado </option>
+                </select>
+
+            </div>
+
+            <div class="col-lg-2" id="size">
+                <label for="columnas"> Columnas</label>
+                <select  id="columnas" name="columnas">
+                    @{
+                        for (int i = 6; i < 21; i += 2)
+                        {
+                            <option value=@i name="columna">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-lg-2" id="size">
+                <label for="fil"> Filas</label>
+                <select  id="filas" name="filas">
+                    @{
+                        for (int i = 6; i < 21; i += 2)
+                        {
+                            <option value=@i name="fila">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-lg-4">
+                <h2> USUARIO INVITADO  </h2>
+                <label for="colore"> Color de Fichas</label>
+                <br />
+                <select id="color2" name="color2" multiple="multiple">
+                    <option value=6 selected> Blanco </option>
+                    <option value=7> Verde </option>
+                    <option value=8> Violeta </option>
+                    <option value=9> Celeste </option>
+                    <option value=10> Gris </option>
+                </select>
+            </div>
+        </section>
+        <!--  FINALIZA SECCION  3-->
+        <!--  INICIA SECCION  4 -->
+
+        <section class="fila" id="seccion5">
+            <div class="col-lg-4">
+                <label>  </label>
+            </div>
+            <div class="col-lg-4">
+                <button type="submit" name="a">
+                    Iniciar Partida
+                </button>
+            </div>
+            <div class="col-lg-4">
+                <label>  </label>
+            </div>
+
+        </section>
+    </form>
+    </div>
+   
+
+</body>
+@if (ViewBag.ShowAlert != null)
+{
+    <script>alert("Movimiento no valido");</script>
+
+}
+
+@if (ViewBag.Carga != null)
+{
+    <script type="text/javascript">
+        alert('@ViewBag.Carga');
+    </script>
+}
+</html>
