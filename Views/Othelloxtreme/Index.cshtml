@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "OthelloXtreme";
+}
+@Model List<ProyectoIPC2.Models.Othelloxtreme>
+   
+
+
+    @{
+        int columnas = (int)@ViewData["Columnas"];
+        int filas = (int)@ViewData["filas"];
+        int colaux = columnas;
+        int tamaño = columnas * filas;
+        int c = (int)ViewData["salto"];
+
+    }
+    @{
+
+        Layout = null;
+        List<int> indices = new List<int>();
+
+        for (int i = 0; i < tamaño; i++)
+        {
+            indices.Add(i);
+        }
+    }
+
+
+
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/Content/coloresxtreme.css"
+        <title>Index</title>
+    </head>
+
+    <body>
+        <!--            SECCION  1-->
+        <div>
+            <!-- Contenedor Principal -->
+            <header class="fila">
+                <!-- seccion del header donde va el logo-->
+                <div id="logo" class="col-lg-2"> <!--img src="~/images/logo.jpg" width="25"  height="25"--> <p></p></div>
+                <div id="titulo" class="col-lg-6"><p></p> </div>
+                <div id="usuario" class="col-lg-3"> <p></p></div>
+                <div id="salir" class="col-lg-1">
+                    <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+                </div>
+            </header>
+            <nav class="fila">
+                <!-- SECCION DONDE VA LA NAVEGACION y botones-->
+
+                <ul>
+                    <li class="col-lg-2">
+                        <p> </p>
+                    </li>
+                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Archivosxml"))
+                    {
+                        <li class="col-lg-1">
+                            <button type="submit" value=27>
+                                iniciar
+                            </button>
+                        </li>
+                    }
+
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Archivosxml"))
+                    {
+                        <li class="col-lg-1">
+                            <button type="submit" value=27>
+                                Limpiar
+                            </button>
+                        </li>
+                    }
+
+                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "Archivosxml"))
+                    {
+                        <li class="col-lg-2">
+                            <button type="submit" name="a">
+                                Guardar partida
+                            </button>
+                        </li>
+                    }
+                    @using (Html.BeginForm("Cargarxml", "Archivosxml", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <li class="col-lg-3">
+                            <input type="file" name="file" accept=".xml" />
+                        </li>
+                        <li class="col-lg-1">
+                            <button type="submit">Cargar </button>
+                        </li>
+
+                    }
+
+                </ul>
+            </nav>
+            <!-- SECCION 3 DONDE VA EL JUGADOR Y MOVIMIENYOS-->
+
+            <section id="seccion3" class="fila">
+                <div class="col-lg-12"> <p> </p> </div>
+            </section>
+
+
+
+            <!-- SECCION DONDE VA EL  TABLERO-->
+            <!--  SECCION DONDE VA EL ABECEDARIO DE CABECERA-->
+            <section id="seccionextra" class="fila">
+                <div class="col-lg-1"> <p> </p> </div>
+                <div class="col-lg-@c">
+                    @{
+                        for (int i = 0; i < columnas; i++)
+                        {
+
+                            <div id="filas"><h2>@ViewBag.alfabeto[i]</h2> </div>
+                        }
+                    }
+                </div>
+
+            </section>
+            <!--  TERMINA LA SECCION DONDE VA EL ABECEDARIO DE CABECERA-->
+            <!--    SECCION DONDE VA  EL TABLERO  CON SU TAMAÑO          -->
+            <section id="seccion4" class="fila">
+                <!--  LADO IZQUIERDO DE LA ENUMERACION DE LAS FILAS -->
+                <div class="col-lg-1">
+                    @{
+                        for (int i = 0; i < filas; i++)
+                        {
+
+                            <div id="columna"><h2>@(i+1)</h2> </div>
+                        }
+                    }
+                </div>
+
+                <div class="col-lg-@c" id="divocultamuestra">
+                    @using (Html.BeginForm(actionName: "Colores", controllerName: "Othelloxtreme"))
+                    {
+                        int contar = 0;
+
+                        for (int i = 0; i < tamaño; i++)
+                        {
+                            if (contar == colaux)
+                            {
+                                contar += 1;
+                                colaux += columnas + 1;
+                                i -= 1;
+                                <div class="cont2">
+                                </div>
+                            }
+                            else
+                            {
+                                contar += 1;
+                                <div class="cont">
+                                    <button type="submit" value=@i class="hid" name="a">
+                                        <div class="inside @Model[i].Color">
+                                        </div>
+                                    </button>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+                <!--  LADO DERECHO  DE LA ENUMERACION DE LAS FILAS -->
+                <div class="col-lg-1">
+                    @{
+                        for (int i = 0; i < filas; i++)
+                        {
+
+                            <div id="columna"><h1>@(i+1)</h1> </div>
+                        }
+                    }
+                </div>
+
+            </section>
+            <!--    SECCION DONDE TERMINA   EL TABLERO  CON SU TAMAÑO          -->
+            <!--  SECCION DONDE VA EL ABECEDARIO DE PIE DEL TABLERO -->
+            <section id="seccionextra" class="fila">
+                <div class="col-lg-1"> <p> </p> </div>
+                <div class="col-lg-@c">
+                    @{
+                        for (int i = 0; i < columnas; i++)
+                        {
+
+                            <div id="filas"><h2>@ViewBag.alfabeto[i]</h2> </div>
+                        }
+                    }
+                </div>
+            </section>
+            <!--  TERMINA LA SECCION DONDE TERMINA  VA EL ABECEDARIO DE PIE DEL TABLERO-->
+
+            <section id="seccion5"> <!-- DONDE VAN EL FOODER O LOS DATOS PERSONALES--></section>
+       
+
+    </body>
+    @if (ViewBag.ShowAlert != null)
+    {
+        <script>alert("Movimiento no valido");</script>
+
+    }
+
+    @if (ViewBag.Carga != null)
+    {
+        <script type="text/javascript">
+        alert('@ViewBag.Carga');
+        </script>
+    }
+</html>
+

@@ -159,6 +159,30 @@ nav ul li input {
 .white {
     background: white !important;
 }
+.red {
+    background: red !important;
+}
+.yellow {
+    background: yellow !important;
+}
+.blue {
+    background: blue !important;
+}
+.orange {
+    background: orange !important;
+}
+.green {
+    background: green !important;
+}
+.azure {
+    background: azure !important;
+}
+.grey {
+    background: grey !important;
+}
+.violet {
+    background: violet !important;
+}
 
 .inside {
     border-radius: 50px;
