@@ -1,8 +1,11 @@
-﻿
+﻿@Model List<ProyectoIPC2.Models.Lecturaxml>
+
+
+
 @{
     ViewBag.Title = "OthelloXtreme";
 }
-@Model List<ProyectoIPC2.Models.Othelloxtreme>
+
    
 
 
@@ -57,7 +60,7 @@
                     <li class="col-lg-2">
                         <p> </p>
                     </li>
-                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Iniciar1", controllerName: "Othelloxtr"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>
@@ -134,7 +137,7 @@
                 </div>
 
                 <div class="col-lg-@c" id="divocultamuestra">
-                    @using (Html.BeginForm(actionName: "Colores", controllerName: "Othelloxtreme"))
+                    @using (Html.BeginForm(actionName: "Jugar", controllerName: "Othelloxtr"))
                     {
                         int contar = 0;
 

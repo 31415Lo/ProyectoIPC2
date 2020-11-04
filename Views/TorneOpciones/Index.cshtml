@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "OthelloXtreme";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Xtremecolores.css" />
+
+</head>
+
+<body>
+    <!--SECCION  1-->
+    <div>
+        <!-- Contenedor Principal -->
+        <header class="fila">
+            <!-- seccion del header donde va el logo-->
+            <div id="logo" class="col-lg-4">
+                <!--img src="~/images/logo.jpg" width="25"  height="25"-->
+                <label>  </label>
+
+            </div>
+            <div id="titulo" class="col-lg-4"><p>OPCIONES DE JUEGO</p> </div>
+            <div id="usuario" class="col-lg-3"> <p></p></div>
+            <div id="salir" class="col-lg-1">
+                <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+            </div>
+        </header>
+        <!-- FINALIZA SECCION  1-->
+        <!-- INICIA SECCION 2-->
+
+
+        <section class="fila" id="section2">
+            <div class="col-lg-4">
+                <h2>  </h2>
+
+            </div>
+
+            <div class="col-lg-4">
+                <h1> TORNEO </h1>
+                <br />
+                <h3>  </h3>
+            </div>
+            <div class="col-lg-4">
+                <h2>  </h2>
+            </div>
+
+        </section>
+        <!--  FINALIZA SECCION  2-->
+        <!--  INICIA  SECCION  3-->
+
+        <form method="post" action="@Url.Action("Index", "Othelloxtr")" id="form" name="form">
+            <section class="fila" id="section3">
+                <div class="col-lg-4">
+                    <h2>  </h2>
+
+
+                </div>
+
+                <div class="col-lg-4" id="size">
+                    <label for="equipos">  CANTIDAD DE EQUIPOS </label>
+                    <select id="equipos" name="equipos">
+                        <option value=4 name="equipos">4</option>
+                        <option value=8 name="equipos">8</option>
+                        <option value=16 name="equipos">16</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-4">
+                    <h2>   </h2>
+
+                </div>
+            </section>
+            <!--  FINALIZA SECCION  3-->
+            <!--  INICIA SECCION  4 -->
+
+            <section class="fila" id="seccion5">
+                <div class="col-lg-4">
+                    <label>  </label>
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit" name="a">
+                        Iniciar Partida
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <label>  </label>
+                </div>
+            </section>
+        </form>
+        <section class="fila" id="seccion6">
+            <div class="col-lg-4">
+                <label>  </label>
+            </div>
+            <div class="col-lg-4">
+                <button type="submit" name="a" >
+                    Cargar Archivo
+                </button>
+            </div>
+            <div class="col-lg-4">
+                <label>  </label>
+            </div>
+        </section>
+
+    </div>
+
+
+</body>
+
+</html>

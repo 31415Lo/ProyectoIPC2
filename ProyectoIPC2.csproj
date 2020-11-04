@@ -126,16 +126,21 @@
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OthelloxtrColoresController.cs" />
-    <Compile Include="Controllers\OthelloxtremeController.cs" />
+    <Compile Include="Controllers\OthelloxtrController.cs" />
     <Compile Include="Controllers\PartidapcController.cs" />
     <Compile Include="Controllers\RetoInversoController.cs" />
     <Compile Include="Controllers\RusuarioController.cs" />
+    <Compile Include="Controllers\TorneoController.cs" />
+    <Compile Include="Controllers\TorneoOthelloController.cs" />
+    <Compile Include="Controllers\TorneOpcionesController.cs" />
+    <Compile Include="Controllers\TorneoXMLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Lecturaxml.cs" />
     <Compile Include="Models\Othelloxtreme.cs" />
     <Compile Include="Models\Rusuario.cs" />
+    <Compile Include="Models\Torneo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,11 +152,13 @@
     <Content Include="Content\colores.css" />
     <Content Include="Content\estilo.css" />
     <Content Include="Content\Index.css" />
+    <Content Include="Content\Torneo.css" />
     <Content Include="Content\Xtremecolores.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\fondo1.png" />
     <Content Include="Images\inicio.png" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -190,7 +197,11 @@
     <Content Include="Views\RetoInverso\Index.cshtml" />
     <Content Include="Views\ApPersonalizada\Index.cshtml" />
     <Content Include="Views\OthelloxtrColores\Index.cshtml" />
-    <Content Include="Views\Othelloxtreme\Index.cshtml" />
+    <Content Include="Views\Othelloxtr\Index.cshtml" />
+    <Content Include="Views\TorneOpciones\Index.cshtml" />
+    <Content Include="Views\Torneo\Index.cshtml" />
+    <Content Include="Views\TorneoXML\Index.cshtml" />
+    <Content Include="Views\TorneoOthello\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

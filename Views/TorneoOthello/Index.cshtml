@@ -1,0 +1,244 @@
+﻿@Model List<ProyectoIPC2.Models.Torneo>
+
+
+   <!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/Content/colores.css" />
+        <title>Index</title>
+</head>
+
+    <body>
+        <!--            SECCION  1-->
+        <div>
+            <!-- Contenedor Principal -->
+            <header class="fila">
+                <!-- seccion del header donde va el logo-->
+                <div id="logo" class="col-lg-4">
+                    <!--img src="~/images/logo.jpg" width="25"  height="25"-->
+                    <label>Ganador:</label> @ViewBag.Ganador
+
+                </div>
+                <div id="titulo" class="col-lg-4"><p></p> </div>
+                <div id="usuario" class="col-lg-3"> <p></p></div>
+                <div id="salir" class="col-lg-1">
+                    <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+                </div>
+            </header>
+            <nav class="fila">
+                <!-- SECCION DONDE VA LA NAVEGACION y botones-->
+
+                <ul>
+                    <li class="col-lg-2">
+                        <p> </p>
+                    </li>
+                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "RetoInverso"))
+                    {
+                        <li class="col-lg-1">
+                            <button type="submit" value=27>
+                                iniciar
+                            </button>
+                        </li>
+                    }
+
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "RetoInverso"))
+                    {
+                        <li class="col-lg-1">
+                            <button type="submit" value=27>
+                                Limpiar
+                            </button>
+                        </li>
+                    }
+
+                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "RetoInverso"))
+                    {
+                        <li class="col-lg-2">
+                            <button type="submit" name="a">
+                                Guardar partida
+                            </button>
+                        </li>
+                    }
+                    @using (Html.BeginForm("Cargarxml", "RetoInverso", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <li class="col-lg-3">
+                            <input type="file" name="file" accept=".xml" />
+                        </li>
+                        <li class="col-lg-1">
+                            <button type="submit">Cargar </button>
+                        </li>
+
+                    }
+
+                </ul>
+            </nav>
+            <!-- SECCION 3 DONDE VA EL JUGADOR Y MOVIMIENYOS-->
+
+            <section id="seccion3" class="fila">
+                <div class="col-lg-12"> <p> </p> </div>
+            </section>
+
+
+
+            <!-- SECCION DONDE VA EL  TABLERO-->
+            <section id="seccionextra" class="fila">
+                <div class="col-lg-4">
+                    <p> </p>
+                </div>
+                <div class="col-lg-5">
+                    <div id="filas"><h2>A</h2> </div>
+                    <div id="filas"><h2>B</h2></div>
+                    <div id="filas"><h2>C</h2></div>
+                    <div id="filas"><h2>D</h2></div>
+                    <div id="filas"><h2>E</h2></div>
+                    <div id="filas"><h2>F</h2></div>
+                    <div id="filas"><h2>G</h2></div>
+                    <div id="filas"><h2>H</h2></div>
+                </div>
+                <div class="col-lg-3">
+                    <p></p>
+                </div>
+            </section>
+            <section id="seccion4" class="fila">
+                <div class="col-lg-3">
+                    <center>
+                        <h3> Usuario</h3>
+                        <label>Movimientos:</label> @ViewBag.movimientos
+                    </center>
+                    <center>
+                        <h3> Punteo</h3>
+                        <label>Punteo:</label> @ViewBag.Punteo1
+                    </center>
+                    <center>
+                        <h3> Cronometro </h3>
+                        <label>Cronometro:</label> @ViewBag.cronometro1
+                    </center>
+
+                </div>
+                <div class="col-lg-1">
+                    <div id="columna"><h2>1</h2> </div>
+                    <div id="columna"><h2>2</h2></div>
+                    <div id="columna"><h2>3</h2></div>
+                    <div id="columna"><h2>4</h2></div>
+                    <div id="columna"><h2>5</h2></div>
+                    <div id="columna"><h2>6</h2></div>
+                    <div id="columna"><h2>7</h2></div>
+                    <div id="columna"><h2>8</h2></div>
+                </div>
+                <div class="col-lg-5" id="divocultamuestra">
+                    @{
+                        int contar = 0;
+                        for (int i = 0; i < 64; i++)
+                        {
+                            if (contar == 8 || contar == 17 || contar == 26 || contar == 35 || contar == 44 || contar == 53 || contar == 62)
+                            {
+                                contar += 1;
+                                i -= 1;
+                                <div class="cont2">
+                                </div>
+                            }
+                            else
+                            {
+                                contar += 1;
+                                if (i == 27 || i == 36)
+                                {
+                                    <div class="cont">
+                                        <button type="submit"  class="hid" name="a">
+                                            <div class="inside white">
+                                            </div>
+                                        </button>
+                                    </div>
+                                }
+                                else if (i == 35 || i == 28)
+                                {
+                                    <div class="cont">
+                                        <button type="submit" class="hid" name="a">
+                                            <div class="inside black">
+                                            </div>
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="cont">
+                                        <button type="submit"  class="hid" name="a">
+                                            <div class="inside null">
+                                            </div>
+                                        </button>
+                                    </div>
+                                }
+
+
+                            }
+                        }
+                    }
+
+
+                </div>
+                <div class="col-lg-1">
+                    <div id="columna"><h1>1</h1> </div>
+                    <div id="columna"><h1>2</h1></div>
+                    <div id="columna"><h1>3</h1></div>
+                    <div id="columna"><h1>4</h1></div>
+                    <div id="columna"><h1>5</h1></div>
+                    <div id="columna"><h1>6</h1></div>
+                    <div id="columna"><h1>7</h1></div>
+                    <div id="columna"><h1>8</h1></div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="col-lg-3">
+                        <center>
+                            <h3> Jugador invitado</h3>
+                            <label>Movimientos:</label>@ViewBag.movimientos1
+                        </center>
+                        <center>
+                            <h3> Punteo</h3>
+                            <label>Punteo:</label>@ViewBag.punteo2
+                        </center>
+                        <center>
+                            <h3> Cronometro </h3>
+                            <label>Cronometro:</label> @ViewBag.Cronometro
+                        </center>
+
+                    </div>
+                </div>
+            </section>
+            <section id="seccionextra" class="fila">
+                <div class="col-lg-4">
+                    <p></p>
+                </div>
+                <div class="col-lg-5">
+                    <div id="filas"><h2>A</h2> </div>
+                    <div id="filas"><h2>B</h2></div>
+                    <div id="filas"><h2>C</h2></div>
+                    <div id="filas"><h2>D</h2></div>
+                    <div id="filas"><h2>E</h2></div>
+                    <div id="filas"><h2>F</h2></div>
+                    <div id="filas"><h2>G</h2></div>
+                    <div id="filas"><h2>H</h2></div>
+                </div>
+                <div class="col-lg-4">
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="seccion5"> <!-- DONDE VAN EL FOODER O LOS DATOS PERSONALES--></section>
+        </div>
+
+    </body>
+    @if (ViewBag.ShowAlert != null)
+    {
+        <script>alert("Movimiento no valido");</script>
+
+    }
+
+    @if (ViewBag.Carga != null)
+    {
+        <script type="text/javascript">
+        alert('@ViewBag.Carga');
+        </script>
+    }
+</html>
+
+
+ 

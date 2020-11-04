@@ -1,0 +1,105 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+ background:#00ffff;
+}
+
+
+[class*="col-"] {
+    float: left;
+    /*border:1px solid black;*/
+    /* padding: 10px;*/
+}
+
+.fila {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    clear: both;
+    display: table;
+    text-align: center
+}
+
+.fila .col-lg-2 .octavos h3 {
+    width: 50%;
+    border: black 3px solid;
+    font-size:15px ;
+}
+
+.fila .col-lg-2 .octavos{
+    font-family:helvetica; 
+    
+}
+.fila .col-lg-2 .cuartos h3 {
+    width: 50%;
+    border: #ff0000 3px solid;
+    font-size:15px ;
+}
+
+.fila .col-lg-2 .semifinales h3 {
+    width: 50%;
+    border: #ff6a00 3px solid;
+    font-size:15px ;
+}
+
+.fila #section2 .fondo {
+    background: url('~/images/fondo1.png' ) #000000;
+    height: 500px;
+}
+
+
+
+/*=============================================
+PANTALLA DE ESCRITORIO GRANDE - LARGE (lg) - revisamos en portatil o pc
+=============================================*/
+
+@media(min-width:1200px) {
+
+    .col-lg-12 {
+        width: 100%;
+    }
+
+    .col-lg-11 {
+        width: 91.66666667%;
+    }
+
+    .col-lg-10 {
+        width: 83.33333333%;
+    }
+
+    .col-lg-9 {
+        width: 75%;
+    }
+
+    .col-lg-8 {
+        width: 66.66666667%;
+    }
+
+    .col-lg-7 {
+        width: 58.33333333%;
+    }
+
+    .col-lg-6 {
+        width: 50%;
+    }
+
+    .col-lg-5 {
+        width: 41.66666667%;
+    }
+
+    .col-lg-4 {
+        width: 33.33333333%;
+    }
+
+    .col-lg-3 {
+        width: 25%;
+    }
+
+    .col-lg-2 {
+        width: 16.66666667%;
+    }
+
+    .col-lg-1 {
+        width: 8.33333333%;
+    }
+}

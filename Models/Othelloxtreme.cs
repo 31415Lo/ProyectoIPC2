@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Xml;
+using System.Collections.Generic;
 namespace ProyectoIPC2.Models
 {
     public class Othelloxtreme

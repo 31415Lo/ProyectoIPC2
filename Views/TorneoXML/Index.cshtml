@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "TABLERO";
+}
+
+<!--                        -------------                TORNEO CON CARGA DE ARCHIVO XML   ----------------------------       -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Torneo.css" />
+</head>
+<body>
+    <!--SECCION  1-->
+    
+        <!-- Contenedor Principal -->
+        <header class="fila">
+            <!-- seccion del header donde va el logo-->
+            <div id="logo" class="col-lg-4">
+                <!--img src="~/images/logo.jpg" width="25"  height="25"-->
+                <label>  </label>
+
+            </div>
+            <div id="titulo" class="col-lg-4"><p>TORNEO</p> </div>
+            <div id="usuario" class="col-lg-3"> <p></p></div>
+            <div id="salir" class="col-lg-1">
+                <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+            </div>
+        </header>
+    
+    <!-- FINALIZA SECCION  1-->
+    <!-- INICIA SECCION 2-->
+    <section class="fila" id="section2">
+        
+        <div class="col-lg-2">
+            <div class="octavos"> <h3> Equipo 1</h3> </div>
+            <button type="submit"> Jugar</button>
+            <div class="octavos"> <h3> Equipo 2</h3> </div>
+            <br />
+            <br />
+            <div class="octavos"> <h3> Equipo 3</h3> </div>
+            <button type="submit"> Jugar</button>
+            <div class="octavos"> <h3> Equipo 4</h3> </div>
+            <br />
+            <br />
+            <div class="octavos"> <h3> Equipo 5</h3> </div>
+            <button type="submit"> Jugar</button>
+            <div class="octavos"> <h3> Equipo 6</h3> </div>
+            <br />
+            <br />
+            <div class="octavos"> <h3> Equipo 7</h3> </div>
+            <button type="submit"> Jugar</button>
+            <div class="octavos"> <h3> Equipo 8</h3> </div>
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <br />
+            <div class="cuartos"> <h3>  Cuartos 1</h3> </div>
+            <br />
+            <br />
+            <button type="submit"> Jugar</button>
+            <br />
+            <br />
+            <br />
+            <div class="cuartos"> <h3>  Cuartos 2</h3> </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="cuartos"> <h3>  Cuartos 3</h3> </div>
+            <br />
+            <br />
+            <br />
+            <button type="submit"> Jugar</button>
+            <br />
+            <br />
+            <br />
+            <div class="cuartos"> <h3>  Cuartos 4</h3> </div>
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="semifinales"> <h3>  Semi 1</h3> </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <button type="submit"> Jugar</button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="semifinales"> <h3>  Semi 2</h3> </div>
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="semifinales"> <h3>  Semi 1</h3> </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="semifinales"> <h3>  Semi 2</h3> </div>
+        </div>
+            <div class="col-lg-2">
+                <br />
+                <button type="submit"> CUARTOS 1</button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <button type="submit"> CUARTOS 2</button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <button type="submit"> CUARTOS 3</button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <button type="submit">CUARTOS 4</button>
+            </div>
+            <div>
+                <button type="submit">EQUIPO 1</button>
+                <br />
+                <br />
+                <button type="submit">EQUIPO 2</button>
+                <br />
+                <br />
+                <br />
+                <button type="submit">EQUIPO 3</button>
+                <br />
+                <br />
+                <button type="submit">EQUIPO 4</button>
+                <br />
+                <br />
+                <br />
+                <button type="submit">EQUIPO 5</button>
+                <br />
+                <br />
+                <button type="submit">EQUIPO 6</button>
+                <br />
+                <br />
+                <br />
+                <button type="submit">EQUIPO 7</button>
+                <br />
+                <br />
+                <button type="submit">EQUIPO 8</button>
+            </div>
+     
+
+    </section>
+    <!--  FINALIZA SECCION  2-->
+    <!--  INICIA  SECCION  3-->
+
+</body>
+
+</html>
