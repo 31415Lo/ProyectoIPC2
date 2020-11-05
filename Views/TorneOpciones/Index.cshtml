@@ -93,15 +93,23 @@
             </section>
         </form>
         <section class="fila" id="seccion6">
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <label>  </label>
             </div>
-            <div class="col-lg-4">
-                <button type="submit" name="a" >
-                    Cargar Archivo
-                </button>
-            </div>
-            <div class="col-lg-4">
+            <div class="col-lg-8">
+                @using (Html.BeginForm("Cargarxml", "TorneoOthello", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                   <ul style="list-style: none">
+                    <li class="col-lg-6" >
+                        <input type="file" name="file" accept=".xml" />
+                    </li>
+                    <li class="col-lg-2">
+                        <button type="submit">Cargar </button>
+                    </li>
+                    </ul>
+                 }
+            </div>  
+            <div class="col-lg-2">
                 <label>  </label>
             </div>
         </section>
@@ -112,3 +120,6 @@
 </body>
 
 </html>
+
+
+

@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "TABLERO";
+}
+
+@{
+    string cantidad = ViewBag.Cantidad;
+    string Nombre_torneo = ViewBag.Nombre_Torneo;
+
+}
+<!--                        -------------                TORNEO CON CARGA DE ARCHIVO XML   ----------------------------       -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Torneo.css" />
+</head>
+<body>
+    <!--SECCION  1-->
+    <!-- Contenedor Principal -->
+    <header class="fila">
+        <!-- seccion del header donde va el logo-->
+        <div id="logo" class="col-lg-4">
+            <!--img src="~/images/logo.jpg" width="25"  height="25"-->
+            <label>  </label>
+
+        </div>
+        <div id="titulo" class="col-lg-4"><h2>Torneo: @Nombre_torneo</h2> </div>
+        <div id="usuario" class="col-lg-3"> <p></p></div>
+        <div id="salir" class="col-lg-1">
+            <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+        </div>
+    </header>
+
+    <!-- FINALIZA SECCION  1-->
+    <!-- INICIA SECCION 2-->
+    <section class="fila" id="section2">
+        <!--                                SECCION DE OCTAVOS DE FINAL                                      -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E1 !="")
+                {
+                    <div class="octavos"> <h3> @ViewBag.E1</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E2</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E3</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E4</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E5</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E6</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E7</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E8</h3> </div>
+                }
+            }
+        </div>
+        <!--                                SECCION DE CUARTOS DE FINAL                                      -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E11 != "")
+                {
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3> @ViewBag.E11</h3> </div>
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>  @ViewBag.E12</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>   @ViewBag.E13</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>  @ViewBag.E14</h3> </div>
+                }
+                }
+
+            </div>
+        <!--                                SECCION DE SEMIFINAL                                     -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E111 != "")
+                {
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="semifinales"> <h3>  @ViewBag.E111</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="semifinales"> <h3> @ViewBag.E112</h3> </div>
+                } }
+        </div>
+        <!--                                SECCION DE SEMIFINAL 2                                     -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E113 != "")
+                {
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="semifinales"> <h3> @ViewBag.E113</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="semifinales"> <h3> @ViewBag.E114</h3> </div>
+
+                } }
+
+        </div>
+        <!--                                SECCION DE CUARTOS DE FINAL                                      -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E15 != "")
+                {
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3> @ViewBag.E15</h3> </div>
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>  @ViewBag.E16</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>   @ViewBag.E17</h3> </div>
+                    <br />
+                    <br />
+                    <br />
+                    <button type="submit"> Jugar</button>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="cuartos"> <h3>  @ViewBag.E18</h3> </div>
+                } }
+        </div>
+        <!--                                SECCION DE OCTAVOS DE FINAL                                      -->
+        <div class="col-lg-2">
+            @{ if (@ViewBag.E91 != "")
+                {
+                    <div class="octavos"> <h3> @ViewBag.E91</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E92</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E93</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E94</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E95</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E96</h3> </div>
+                    <br />
+                    <br />
+                    <div class="octavos"> <h3> @ViewBag.E97</h3> </div>
+                    <button type="submit"> Jugar</button>
+                    <div class="octavos"> <h3> @ViewBag.E98</h3> </div>
+
+                } 
+                }
+
+        </div>
+    </section>
+    <section class="fila" id="section2">
+        <div class="col-lg-2">
+            <div class="final"> <h3> @ViewBag.Final1</h3> </div>
+        </div>
+
+        <div class="col-lg-2">
+            <div class="final"> <h3> @ViewBag.Final</h3> </div>
+            <button type="submit"> Jugar</button>
+        </div>
+
+        <div class="col-lg-2">
+            <div class="final"> <h3> @ViewBag.Final2</h3> </div>
+        </div>
+
+
+
+
+
+    </section>
+        <!--  FINALIZA SECCION  2-->
+        <!--  INICIA  SECCION  3-->
+
+</body>
+
+</html>

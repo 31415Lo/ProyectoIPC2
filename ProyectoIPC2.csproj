@@ -202,6 +202,9 @@
     <Content Include="Views\Torneo\Index.cshtml" />
     <Content Include="Views\TorneoXML\Index.cshtml" />
     <Content Include="Views\TorneoOthello\Index.cshtml" />
+    <Content Include="Views\TorneoOthello\VistaDiagrama.cshtml" />
+    <Content Include="Views\TorneoOthello\Cargarxml.cshtml" />
+    <Content Include="Views\TorneoOthello\Tablero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
