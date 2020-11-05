@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
@@ -14,6 +15,11 @@ namespace ProyectoIPC2.Controllers
         static string cantidad = "";
         static List<string> Equipos = new List<string>();
         static List<string> Integrantes = new List<string>();
+
+        static List<string> EInequipoA = new List<string>();
+        static List<string> InequipoB = new List<string>();
+        static string EquipoA = "";
+        static string EquipoB = "";
         static string E1= "";
         static string E2 = "";
         static string E3 = "";
@@ -51,6 +57,17 @@ namespace ProyectoIPC2.Controllers
             return View();
         }
 
+
+        //-------------------------  RECIBE DEL TABLERO Y MANDA LOS EQUIPOS A A JUGAR, CON LA VISTA INDEX ------------
+        [HttpPost]
+        public ActionResult Index(string a)
+        {
+            equipos(a);
+
+
+            return RedirectToAction("Index");
+        }
+        //-----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -101,6 +118,8 @@ namespace ProyectoIPC2.Controllers
             return RedirectToAction("Tablero");
         }
 
+
+        //-------------------------------------------- REDIRIGE AL TABLERO DONDE SE ENCUENTRA EL DIAGRAMA ---------------------
         public ActionResult Tablero() {
 
             ViewBag.E111 = E111;
@@ -139,12 +158,6 @@ namespace ProyectoIPC2.Controllers
 
             return View();
         }
-
-
-
-
-
-
 
 
 
@@ -190,5 +203,78 @@ namespace ProyectoIPC2.Controllers
                 E98 = Equipos[15];
             }
         }
+
+
+        //------------------------------------------ AUXILIA AL METODO HTTP POST CON LOS VALORES -----------------------------------
+        public void equipos(string b) {
+            if (b == "1") {
+                EquipoA = E1;
+                EquipoB = E2;
+            } else if (b == "2") {
+                EquipoA = E3;
+                EquipoB = E4;
+            }else if (b == "3") {
+                EquipoA = E5;
+                EquipoB = E6;
+            } else if (b == "4")
+            {
+                EquipoA = E7;
+                EquipoB = E8;
+            }
+            else if (b == "5")
+            {
+                EquipoA = E11;
+                EquipoB = E12;
+            }
+            else if (b == "6")
+            {
+                EquipoA = E13;
+                EquipoB = E14;
+            }
+            else if (b == "7")
+            {
+                EquipoA = E111;
+                EquipoB = E112;
+            }
+            else if (b == "8")
+            {
+                EquipoA = E113;
+                EquipoB = E114;
+            }
+            else if (b == "9")
+            {
+                EquipoA = E15;
+                EquipoB = E16;
+            }
+            else if (b == "10")
+            {
+                EquipoA = E17;
+                EquipoB = E18;
+            }
+            else if (b == "11")
+            {
+                EquipoA = E91;
+                EquipoB = E92;
+            }
+            else if (b == "12")
+            {
+                EquipoA = E93;
+                EquipoB = E94;
+            }
+            else if (b == "13")
+            {
+                EquipoA = E95;
+                EquipoB = E96;
+            }
+            else if (b == "14")
+            {
+                EquipoA = E97;
+                EquipoB = E98;
+            }
+
+
+        }
+
+
     }
 }

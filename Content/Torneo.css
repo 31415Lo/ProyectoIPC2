@@ -41,6 +41,17 @@ body {
     border: #ff6a00 3px solid;
     font-size:15px ;
 }
+.fila .col-lg-2 .final h3 {
+    width: 50%;
+    border: #0026ff 3px solid;
+    font-size:15px ;
+}
+
+.fila .col-lg-2 .finals h3 {
+    width: 50%;
+    border: #fac804 3px solid;
+    font-size:15px ;
+}
 
 .fila #section2 .fondo {
     background: url('~/images/fondo1.png' ) #000000;

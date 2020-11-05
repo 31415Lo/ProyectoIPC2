@@ -37,26 +37,30 @@
     <section class="fila" id="section2">
         <!--                                SECCION DE OCTAVOS DE FINAL                                      -->
         <div class="col-lg-2">
-            @{ if (@ViewBag.E1 !="")
+            @{ if (@ViewBag.E1 != "")
                 {
+                    using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                    { 
                     <div class="octavos"> <h3> @ViewBag.E1</h3> </div>
-                    <button type="submit"> Jugar</button>
+
+                    <button type="submit" value="1"> Jugar</button>
                     <div class="octavos"> <h3> @ViewBag.E2</h3> </div>
                     <br />
                     <br />
                     <div class="octavos"> <h3> @ViewBag.E3</h3> </div>
-                    <button type="submit"> Jugar</button>
+                    <button type="submit" value="2"> Jugar</button>
                     <div class="octavos"> <h3> @ViewBag.E4</h3> </div>
                     <br />
                     <br />
                     <div class="octavos"> <h3> @ViewBag.E5</h3> </div>
-                    <button type="submit"> Jugar</button>
+                    <button type="submit" value="3"> Jugar</button>
                     <div class="octavos"> <h3> @ViewBag.E6</h3> </div>
                     <br />
                     <br />
                     <div class="octavos"> <h3> @ViewBag.E7</h3> </div>
-                    <button type="submit"> Jugar</button>
+                    <button type="submit"value="4"> Jugar</button>
                     <div class="octavos"> <h3> @ViewBag.E8</h3> </div>
+                    }
                 }
             }
         </div>
@@ -64,31 +68,34 @@
         <div class="col-lg-2">
             @{ if (@ViewBag.E11 != "")
                 {
-                    <br />
-                    <br />
-                    <div class="cuartos"> <h3> @ViewBag.E11</h3> </div>
-                    <br />
-                    <br />
-                    <button type="submit"> Jugar</button>
-                    <br />
-                    <br />
-                    <br />
-                    <div class="cuartos"> <h3>  @ViewBag.E12</h3> </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="cuartos"> <h3>   @ViewBag.E13</h3> </div>
-                    <br />
-                    <br />
-                    <br />
-                    <button type="submit"> Jugar</button>
-                    <br />
-                    <br />
-                    <br />
-                    <div class="cuartos"> <h3>  @ViewBag.E14</h3> </div>
+                    using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                    { 
+                        <br />
+                        <br />
+                        <div class="cuartos"> <h3> @ViewBag.E11</h3> </div>
+                        <br />
+                        <br />
+                        <button type="submit"  value="5"> Jugar</button>
+                        <br />
+                        <br />
+                        <br />
+                        <div class="cuartos"> <h3>  @ViewBag.E12</h3> </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="cuartos"> <h3>   @ViewBag.E13</h3> </div>
+                        <br />
+                        <br />
+                        <br />
+                        <button type="submit"  value="6"> Jugar</button>
+                        <br />
+                        <br />
+                        <br />
+                        <div class="cuartos"> <h3>  @ViewBag.E14</h3> </div>
+                    }
                 }
                 }
 
@@ -97,74 +104,82 @@
         <div class="col-lg-2">
             @{ if (@ViewBag.E111 != "")
                 {
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="semifinales"> <h3>  @ViewBag.E111</h3> </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <button type="submit"> Jugar</button>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="semifinales"> <h3> @ViewBag.E112</h3> </div>
+                    using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                    { 
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="semifinales"> <h3>  @ViewBag.E111</h3> </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <button type="submit" value="7"> Jugar</button>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="semifinales"> <h3> @ViewBag.E112</h3> </div>
+                    }
                 } }
-        </div>
+            </div>
         <!--                                SECCION DE SEMIFINAL 2                                     -->
         <div class="col-lg-2">
             @{ if (@ViewBag.E113 != "")
                 {
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="semifinales"> <h3> @ViewBag.E113</h3> </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <button type="submit"> Jugar</button>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="semifinales"> <h3> @ViewBag.E114</h3> </div>
+                    using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                    {
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="semifinales"> <h3> @ViewBag.E113</h3> </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <button type="submit" value="8"> Jugar</button>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="semifinales"> <h3> @ViewBag.E114</h3> </div>
+                        }
 
-                } }
+                    } }
 
-        </div>
+            </div>
         <!--                                SECCION DE CUARTOS DE FINAL                                      -->
         <div class="col-lg-2">
             @{ if (@ViewBag.E15 != "")
                 {
+                     using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                     {
                     <br />
                     <br />
                     <div class="cuartos"> <h3> @ViewBag.E15</h3> </div>
                     <br />
                     <br />
-                    <button type="submit"> Jugar</button>
+                    <button type="submit" value="9"> Jugar</button>
                     <br />
                     <br />
                     <br />
@@ -179,60 +194,63 @@
                     <br />
                     <br />
                     <br />
-                    <button type="submit"> Jugar</button>
+                    <button type="submit" value="10"> Jugar</button>
                     <br />
                     <br />
                     <br />
                     <div class="cuartos"> <h3>  @ViewBag.E18</h3> </div>
-                } }
+                         }
+                     } }
         </div>
         <!--                                SECCION DE OCTAVOS DE FINAL                                      -->
         <div class="col-lg-2">
             @{ if (@ViewBag.E91 != "")
                 {
-                    <div class="octavos"> <h3> @ViewBag.E91</h3> </div>
-                    <button type="submit"> Jugar</button>
-                    <div class="octavos"> <h3> @ViewBag.E92</h3> </div>
-                    <br />
-                    <br />
-                    <div class="octavos"> <h3> @ViewBag.E93</h3> </div>
-                    <button type="submit"> Jugar</button>
-                    <div class="octavos"> <h3> @ViewBag.E94</h3> </div>
-                    <br />
-                    <br />
-                    <div class="octavos"> <h3> @ViewBag.E95</h3> </div>
-                    <button type="submit"> Jugar</button>
-                    <div class="octavos"> <h3> @ViewBag.E96</h3> </div>
-                    <br />
-                    <br />
-                    <div class="octavos"> <h3> @ViewBag.E97</h3> </div>
-                    <button type="submit"> Jugar</button>
-                    <div class="octavos"> <h3> @ViewBag.E98</h3> </div>
+                    using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+                    {
+                        <div class="octavos"> <h3> @ViewBag.E91</h3> </div>
+                        <button type="submit" value="11"> Jugar</button>
+                        <div class="octavos"> <h3> @ViewBag.E92</h3> </div>
+                        <br />
+                        <br />
+                        <div class="octavos"> <h3> @ViewBag.E93</h3> </div>
+                        <button type="submit" value="12"> Jugar</button>
+                        <div class="octavos"> <h3> @ViewBag.E94</h3> </div>
+                        <br />
+                        <br />
+                        <div class="octavos"> <h3> @ViewBag.E95</h3> </div>
+                        <button type="submit"value="13"> Jugar</button>
+                        <div class="octavos"> <h3> @ViewBag.E96</h3> </div>
+                        <br />
+                        <br />
+                        <div class="octavos"> <h3> @ViewBag.E97</h3> </div>
+                        <button type="submit" value="14"> Jugar</button>
+                        <div class="octavos"> <h3> @ViewBag.E98</h3> </div>
+                        }
 
-                } 
+                    }
                 }
 
-        </div>
+            </div>
     </section>
     <section class="fila" id="section2">
-        <div class="col-lg-2">
-            <div class="final"> <h3> @ViewBag.Final1</h3> </div>
-        </div>
+        @using (Html.BeginForm(actionName: "Index", controllerName: "TorneoOthello"))
+        {
+            <div class="col-lg-2">
+                <div class="final"> <h3> @ViewBag.Final1</h3> </div>
+            </div>
 
-        <div class="col-lg-2">
-            <div class="final"> <h3> @ViewBag.Final</h3> </div>
-            <button type="submit"> Jugar</button>
-        </div>
+            <div class="col-lg-2">
+                <div class="finals"> <h3> @ViewBag.Final</h3> </div>
+                <button type="submit" value="15"> Jugar</button>
+            </div>
 
-        <div class="col-lg-2">
-            <div class="final"> <h3> @ViewBag.Final2</h3> </div>
-        </div>
+            <div class="col-lg-2">
+                <div class="final"> <h3> @ViewBag.Final2</h3> </div>
+            </div>
+        }
 
-
-
-
-
-    </section>
+        </section>
         <!--  FINALIZA SECCION  2-->
         <!--  INICIA  SECCION  3-->
 
