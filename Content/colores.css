@@ -30,7 +30,7 @@ header #logo { /*LOGOTIPO*/
 
 header #titulo {
     font-family: 'kaushan Script',cursive;
-    font-size: 80px; /*anchura del div*/
+    font-size:20px; /*anchura del div*/
     color: white;
     text-align: center;
     line-height: 60px; 

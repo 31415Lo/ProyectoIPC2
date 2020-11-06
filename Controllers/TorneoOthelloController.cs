@@ -15,11 +15,14 @@ namespace ProyectoIPC2.Controllers
         static string cantidad = "";
         static List<string> Equipos = new List<string>();
         static List<string> Integrantes = new List<string>();
+        static List<int> Punteos = new List<int>();
 
-        static List<string> EInequipoA = new List<string>();
+        static List<string> InequipoA = new List<string>();
         static List<string> InequipoB = new List<string>();
+        static string Aviso = "";
         static string EquipoA = "";
         static string EquipoB = "";
+        static string Juego = "";
         static string E1= "";
         static string E2 = "";
         static string E3 = "";
@@ -48,12 +51,19 @@ namespace ProyectoIPC2.Controllers
         static string E112 = "";
         static string E113 = "";
         static string E114 = "";
+        static string Final1 = "";
+        static string Final2 = "";
+        static string Final = "";
 
 
         // GET: TorneoOthello
         public ActionResult Index()
         {
-            
+            ViewBag.EquipoA = EquipoA;
+            ViewBag.EquipoB = EquipoB;
+            ViewBag.InequipoA = InequipoA;
+            ViewBag.InequipoB = InequipoB;
+            ViewBag.Aviso = Aviso;
             return View();
         }
 
@@ -62,13 +72,53 @@ namespace ProyectoIPC2.Controllers
         [HttpPost]
         public ActionResult Index(string a)
         {
-            equipos(a);
-
-
+            Equiposas(a);
+           
             return RedirectToAction("Index");
         }
         //-----------------------------------------------------------------------------------------------------------------
+        //-------------------------  RECIBE DEL TABLERO OTHELLO EL GANADOR Y REDIRIJE A LA PANTALLA DEL DIAGRAMA ------------
+        [HttpPost]
+        public ActionResult Ganador(string ganador)
+        {
+            if (ganador == "empate") {
+                int Index = 0;
+                foreach (string e in Equipos)
+                {
+                    if (e == EquipoA)
+                    {
+                        Punteos[Index]= Punteos[Index]+ 1;
+                    }
+                    else if (e == EquipoB) {
+                        Punteos[Index]= Punteos[Index]+1 ;
+                    }
+                    Index += 1;
+                }
+                Aviso = "Hay empate, tiene que haber un ganador";
+                return RedirectToAction("Index");
+            }
+        //--------------- CUANDO NO HAY EMPATE ------------------
+            else {
+                Clasficar(ganador);
+                InequipoA.Clear();
+                InequipoB.Clear();
+                int Index = 0;
+                foreach (string e in Equipos)
+                {
+                    if (e == ganador)
+                    {
 
+                        Punteos[Index]= Punteos[Index]+3;
+                    }
+                    Index += 1;
+                }
+                Aviso = "";
+            }
+            
+
+            return RedirectToAction("Tablero");
+        }
+        //-----------------------------------------------------------------------------------------------------------------
 
 
         // ------------------------------------------------- CARGAR ARCHIVOS DE TORNEO XML -----------------------------------------
@@ -150,6 +200,9 @@ namespace ProyectoIPC2.Controllers
             ViewBag.E96 = E96;
             ViewBag.E97 = E97;
             ViewBag.E98 = E98;
+            ViewBag.Final1 = Final1;
+            ViewBag.Final2 = Final2;
+            ViewBag.Final = Final;
 
             ViewBag.Nombre_Torneo = Nombre_torneo;
             ViewBag.Equipos = Equipos;
@@ -202,79 +255,190 @@ namespace ProyectoIPC2.Controllers
                 E97 = Equipos[14];
                 E98 = Equipos[15];
             }
+            for (int i = 0;i<Equipos.Count();i++)
+            {
+
+                Punteos.Add(0);
+            }
+
         }
 
 
         //------------------------------------------ AUXILIA AL METODO HTTP POST CON LOS VALORES -----------------------------------
-        public void equipos(string b) {
+        public void Equiposas(string b) {
             if (b == "1") {
                 EquipoA = E1;
                 EquipoB = E2;
+                Juego =b;
             } else if (b == "2") {
                 EquipoA = E3;
                 EquipoB = E4;
-            }else if (b == "3") {
+                Juego = b;
+            }
+            else if (b == "3") {
                 EquipoA = E5;
                 EquipoB = E6;
+                Juego = b;
             } else if (b == "4")
             {
                 EquipoA = E7;
                 EquipoB = E8;
+                Juego = b;
             }
             else if (b == "5")
             {
                 EquipoA = E11;
                 EquipoB = E12;
+                Juego = b;
             }
             else if (b == "6")
             {
                 EquipoA = E13;
                 EquipoB = E14;
+                Juego = b;
             }
             else if (b == "7")
             {
                 EquipoA = E111;
                 EquipoB = E112;
+                Juego = b;
             }
             else if (b == "8")
             {
                 EquipoA = E113;
                 EquipoB = E114;
+                Juego = b;
             }
             else if (b == "9")
             {
                 EquipoA = E15;
                 EquipoB = E16;
+                Juego = b;
             }
             else if (b == "10")
             {
                 EquipoA = E17;
                 EquipoB = E18;
+                Juego = b;
             }
             else if (b == "11")
             {
                 EquipoA = E91;
                 EquipoB = E92;
+                Juego = b;
             }
             else if (b == "12")
             {
                 EquipoA = E93;
                 EquipoB = E94;
+                Juego = b;
             }
             else if (b == "13")
             {
                 EquipoA = E95;
                 EquipoB = E96;
+                Juego = b;
             }
             else if (b == "14")
             {
                 EquipoA = E97;
                 EquipoB = E98;
+                Juego = b;
             }
 
-
+            int cont = 0;
+            foreach (string e in Equipos) {
+                if (e == EquipoA)
+                {
+                    break;
+                }
+                else {
+                    cont += 1;
+                }
+            }
+            cont = cont * 3;
+            InequipoA.Add(Integrantes[cont]);
+            InequipoA.Add(Integrantes[cont+1]);
+            InequipoA.Add(Integrantes[cont+2]);
+            cont = 0;
+            foreach (string e in Equipos)
+            {
+                if (e == EquipoB)
+                {
+                    break;
+                }
+                else
+                {
+                    cont += 1;
+                }
+            }
+            cont = cont * 3;
+            InequipoB.Add(Integrantes[cont]);
+            InequipoB.Add(Integrantes[cont + 1]);
+            InequipoB.Add(Integrantes[cont + 2]);
         }
 
+        //-------------------------- ENCARGADO DE  ASIGNAR AL GANADOR A LA SIGUIENTE RONDA ------------------------------------------
+        public void Clasficar(string b) {
+            if (Juego == "1")
+            {
+                E11 = b;
+            }
+            else if (Juego == "2")
+            {
+                E12 = b;
+            }
+            else if (Juego == "3")
+            {
+                E13 = b;
+            }
+            else if (Juego == "4")
+            {
+                E14 = b;
+            }
+            else if (Juego == "5")
+            {
+                E111 = b;
+            }
+            else if (Juego == "6")
+            {
+                E112 = b;
+            }
+            else if (Juego == "7")
+            {
+                Final1 = b;
+            }
+            else if (Juego == "8")
+            {
+                Final2 = b;
+            }
+            else if (Juego == "9")
+            {
+                E113 = b;
+            }
+            else if (Juego == "10")
+            {
+                E114 = b;
+            }
+            else if (Juego == "11")
+            {
+                E15 = b;
+            }
+            else if (Juego == "12")
+            {
+                E16 = b;
+            }
+            else if(Juego == "13")
+            {
+                E17 = b;
+            }
+            else if (Juego  == "14")
+            {
+                E18 = b;
+            }
 
+           
+
+        }
     }
 }

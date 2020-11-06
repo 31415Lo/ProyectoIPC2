@@ -24,7 +24,7 @@
             <header class="fila">
                 <!-- seccion del header donde va el logo-->
                 <div id="logo" class="col-lg-2"> <!--img src="~/images/logo.jpg" width="25"  height="25"--> <p></p></div>
-                <div id="titulo" class="col-lg-6"><p></p> </div>
+                <div class="col-lg-6"><p>@ViewBag.Aviso</p> </div>
                 <div id="usuario" class="col-lg-3"> <p></p></div>
                 <div id="salir" class="col-lg-1">
                     <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
@@ -34,45 +34,39 @@
                 <!-- SECCION DONDE VA LA NAVEGACION y botones-->
 
                 <ul>
-                    <li class="col-lg-2">
+                    <li class="col-lg-1">
                         <p> </p>
                     </li>
-                    @using (Html.BeginForm(actionName: "Colores2", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Ganador", controllerName: "TorneoOthello"))
                     {
-                        <li class="col-lg-1">
-                            <button type="submit" value=27>
-                                iniciar
+                        <li class="col-lg-4">
+                            <button type="submit" value=@ViewBag.EquipoA name="ganador">
+                                Gana Equipo:@ViewBag.EquipoA
                             </button>
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Archivosxml"))
-                    {
-                        <li class="col-lg-1">
-                            <button type="submit" value=27>
-                                Limpiar
-                            </button>
-                        </li>
-                    }
-
-                    @using (Html.BeginForm(actionName: "Guardarxml", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Ganador", controllerName: "TorneoOthello"))
                     {
                         <li class="col-lg-2">
-                            <button type="submit" name="a">
-                                Guardar partida
+                            <button type="submit" value="empate" name="ganador">
+                                Empate
                             </button>
                         </li>
                     }
-                    @using (Html.BeginForm("Cargarxml", "Archivosxml", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <li class="col-lg-3">
-                            <input type="file" name="file" accept=".xml" />
-                        </li>
-                        <li class="col-lg-1">
-                            <button type="submit">Cargar </button>
-                        </li>
 
+                    @using (Html.BeginForm(actionName: "Ganador", controllerName: "TorneoOthello"))
+                    {
+                        <li class="col-lg-4">
+                            <button type="submit" value=@ViewBag.EquipoB name="ganador">
+                                Gana Equipo: @ViewBag.EquipoB
+                            </button>
+                        </li>
                     }
+                    <li class="col-lg-1">
+                        <p> </p>
+                    </li>
+
 
                 </ul>
             </nav>
@@ -106,16 +100,18 @@
             <section id="seccion4" class="fila">
                 <div class="col-lg-3">
                     <center>
-                        <h3> @ViewBag.EquipoA</h3>
+                        <h3>Equipo: @ViewBag.EquipoA</h3>
                     </center>
                     <center>
                         <h3> Integrantes:</h3>
-                        <ul>
+                        <form>
                             @foreach (var person in ViewBag.InequipoA)
                             {
-                                <li>@person</li>
+                                <input type="radio" name="color" value=@person>@person
+                                <br />
                             }
-                        </ul>
+                        </form>
+
                     </center>
                    
                 </div>
@@ -189,8 +185,23 @@
                     <div id="columna"><h1>8</h1></div>
                 </div>
                 <div class="col-lg-3">
-                    <p></p>
+                    <center>
+                        <h3>Equipo: @ViewBag.EquipoB</h3>
+                    </center>
+                    <center>
+                        <h3> Integrantes:</h3>
+                        <form>
+                            @foreach (var person in ViewBag.InequipoB)
+                            {
+                                    <input type="radio" name="color" value=@person>@person
+                                    <br />
+                            }
+                        </form>
+                    </center>
                 </div>
+
+
+
             </section>
             <section id="seccionextra" class="fila">
                 <div class="col-lg-4">
@@ -208,18 +219,6 @@
                 </div>
                 <div class="col-lg-4">
                     
-                        <center>
-                            <h3> @ViewBag.EquipoB</h3>
-                        </center>
-                        <center>
-                            <h3> Integrantes:</h3>
-                            <ul>
-                                @foreach (var person in ViewBag.InequipoB)
-                                {
-                                    <li>@person</li>
-                                }
-                            </ul>
-                        </center>
                     </div>
 </section>
 
