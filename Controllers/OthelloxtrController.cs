@@ -18,13 +18,21 @@ namespace ProyectoIPC2.Controllers
         static int fil = 0;
         static int tamaño = 0;
         static int salto = 0;
+        static List<string> Juego = new List<string>(); //-------------------- PRUEBA CON ESTA LISTA PARA COLOREAR LAS FICHAS
         static List<string> abecedario = new List<string>(); 
         static List<string> colorj1 = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1"
         static List<string> colorj2 = new List<string>();//-- CORRESPONDE  A LOS COLORES DEL JUGADOR INVITADO O JUGADOR 2  "j2"
-        static List<string> colorj1aux = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1aux" VACIADO Y REASIGNADO
-        static List<string> colorj2aux = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1"  VACIADO Y REASIGNADO
-        static String turno = "j1";    //-  PARA VALIDAR EL TURNO
+        static List<string> Coj1aux = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1aux" VACIADO Y REASIGNADO
+        static List<string> Coj2aux = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1"  VACIADO Y REASIGNADO
+        static string turno = "";    //-  PARA VALIDAR EL TURNO
+        static string Ganador = "";
+        static string Invitado = "";
+        static int Mov1 = 0;
+        static int Mov2 = 0;
+        static string ModalidadColores = "";   // ------- PUEDE SER DE APERTURA PERSONALIZADA O APERTURA NORMAL 
+        static string ModalidadPartida = "";  // -------- PUEDE SER DEL MODO INVERSO O DEL MODO NORMAL 
 
+        /*
         static string col1 = ""; //"black"
         static string col2 = "";// "red"
         static string col3 = "";// "yellow"
@@ -34,8 +42,8 @@ namespace ProyectoIPC2.Controllers
         static string col7 = "";// "green"
         static string col8 = "";// "violet"
         static string col9 = "";// "azure"
-        static string col10 = "";// "grey"
-
+        static string col10 = "";// "grey" 
+        */
 
         // GET: Othelloxtreme
         public ActionResult Index()
@@ -45,79 +53,82 @@ namespace ProyectoIPC2.Controllers
             ViewData["filas"] = fil;
             ViewData["salto"] = salto;
             ViewBag.alfabeto = abecedario;
+            ViewBag.Juego = Juego;
+            ViewBag.Color1 = colorj1;
+            ViewBag.Color2 = colorj2;
+            ViewBag.Turno = turno;
+            ViewBag.Ganador = Ganador;
+            ViewBag.Invitado = Invitado;
+            ViewBag.Mov1 = Mov1;
+            ViewBag.Mov2 = Mov2;
             return View(casillas);
         }
 
         [HttpPost]
-        public ActionResult Index(IList<int> color1, IList<int> color2, int columnas, int filas)
+        public ActionResult Index(IList<int> color1, IList<int> color2, int columnas, int filas, string modalidad, string opcion, string nombre)
         {
           
             col = columnas;
             fil = filas;
             tamaño = col * filas;
-            Othelloxtreme lec = new Othelloxtreme();
+            ModalidadColores = modalidad; // --- MODALIDAD DE PERSONALIZACION DE COLORES 
+            ModalidadPartida = opcion; // ----- MODALIDAD INVERSO O NORMAL 
+            Invitado = nombre;
+            //Othelloxtreme lec = new Othelloxtreme();
             for (int i = 0; i <tamaño; i++)
             {
 
-                lec.Index = 0;
-                casillas.Add(lec);
+                string c = null;
+                Juego.Add(c);
+               // lec.Index = 0;
+                //casillas.Add(lec);
             }
 
             for (int i = 0; i < color1.Count(); i++)
             {
                 if (color1[i] == 1)
                 {
-                    col1 = "black";
-                    colorj1.Add(col1);
+                    colorj1.Add("black");
 
                 }
                 else if (color1[i] == 2)
                 {
-                    col2 = "red";
-                    colorj1.Add(col2);
+                    colorj1.Add("red");
                 }
                 else if (color1[i] == 3)
                 {
-                    col3 = "yellow";
-                    colorj1.Add(col3);
+                    colorj1.Add("yellow");
                 }
                 else if (color1[i] == 4)
                 {
-                    col4 = "blue";
-                    colorj1.Add(col4);
+                    colorj1.Add("blue");
                 }
                 else if (color1[i] == 5)
                 {
-                    col5 = "orange";
-                    colorj1.Add(col5);
+                    colorj1.Add("orange");
                 }
             }
             for (int i = 0; i < color2.Count(); i++)
             {
                 if (color2[i] == 6)
                 {
-                    col6 = "white";
-                    colorj2.Add(col6);
+                    colorj2.Add("white");
                 }
                 else if (color2[i] == 7)
                 {
-                    col7 = "green";
-                    colorj2.Add(col7);
+                    colorj2.Add("green");
                 }
                 else if (color2[i] == 8)
                 {
-                    col8 = "violet";
-                    colorj2.Add(col8);
+                    colorj2.Add("violet");
                 }
                 else if (color2[i] == 9)
                 {
-                    col9 = "azure";
-                    colorj2.Add(col9);
+                    colorj2.Add("azure");
                 }
                 else if (color2[i] == 10)
                 {
-                    col10 = "grey";
-                    colorj2.Add(col10);
+                    colorj2.Add("grey");
                 }
             }
 
@@ -164,6 +175,7 @@ namespace ProyectoIPC2.Controllers
             ViewData["filas"] = fil;
             ViewData["salto"] = salto;
             ViewBag.alfabeto = abecedario;
+            
             //return View( casillas);
             return RedirectToAction("Index");
         }
@@ -208,22 +220,13 @@ namespace ProyectoIPC2.Controllers
 
             if (turno == "j1")
             {
-                coloraux1 = colorj2;  // SE VERIFICA LOS COLORES DEL JUGADOR INVITADO
-                if (colorj1aux.Count()==0) { // COLOR J1AUX ES STATIC , POP 
-                    colorj1aux = colorj1;
-                }
-                coloraux2 = colorj1aux; //SE ASINGA LA LISTA DEL COLOR PARA LAS NUEVAS CASIILAS
-                turno = "j2"; // SE CAMBIA EL TURNO PARA EL JUGADOR DOS
+                
+                turno = "j2"; // SE CAMBIA EL TURNO PARA EL JUGADOR DOS 
 
             }
             else
             {
-                coloraux1 = colorj1;  // SE VERIFICA LOS COLORES DEL USUARIO
-                if (colorj2aux.Count() == 0)
-                {
-                    colorj2aux = colorj2;
-                }
-                coloraux2 = colorj2aux; //SE ASINGA LA LISTA DEL COLOR PARA LAS NUEVAS CASIILAS
+               
                 turno = "j1"; // SE CAMBIA EL TURNO PARA EL JUGADOR UNO
             }
             //------------------------------------------------------------------------------------------------------------------
@@ -446,18 +449,12 @@ namespace ProyectoIPC2.Controllers
             else
             {
                 //--- AGREGAR LA OPCION DE VALIDAR  LAS OPCION DE CAMBIAR EL TURNO.
-                ViewData["Columnas"] = col;
-                ViewData["filas"] = fil;
-                ViewData["salto"] = salto;
-                ViewBag.alfabeto = abecedario;
-                return View("Index", casillas);
+                
+                return  RedirectToAction("Index");
                
             }
-            ViewData["Columnas"] = col;
-            ViewData["filas"] = fil;
-            ViewData["salto"] = salto;
-            ViewBag.alfabeto = abecedario;
-            return View("Index", casillas);
+
+            return RedirectToAction("Index");
 
         }
 
@@ -500,29 +497,19 @@ namespace ProyectoIPC2.Controllers
             return true;
         }
         //--------------------------------------------------------------------------------------------------------------
-        // -------------------------------  FUNCION ENCARGADA   DE REASIGNAR LOS LISTADOS DE COLORES  ------------------
-        public void llenarlista(string a) {
-
-            if (a == "j1")
-            {
-                colorj1aux = colorj1;
-            }
-            else {
-                colorj2aux = colorj2;
-            }
-        }
+       
         //--------------------------------------------------------------------------------------------------------------
         // -------------------------------  FUNCION ENCARGADA VERFICIAR SI EL INDEX ES VALIDO CON EL COLOR ------------------
         public bool validarindex(int a) {
 
             foreach (string colorpre in colorj1) {
-                if (casillas[a].Color == colorpre) {
+                if (Juego[a] == colorpre) {
                     return true;
                 }
             }
             foreach (string colorpre in colorj2)
             {
-                if (casillas[a].Color == colorpre)
+                if (Juego[a] == colorpre)
                 {
                     return true;
                 }
@@ -539,7 +526,7 @@ namespace ProyectoIPC2.Controllers
             {
                 foreach (string colorpre in colorj2)
                 {
-                    if (casillas[a].Color == colorpre)
+                    if (Juego[a] == colorpre)
                     {
                         return true;
                     }
@@ -550,7 +537,7 @@ namespace ProyectoIPC2.Controllers
 
                 foreach (string colorpre in colorj1)
                 {
-                    if (casillas[a].Color == colorpre)
+                    if (Juego[a] == colorpre)
                     {
                         return true;
                     }
@@ -565,7 +552,7 @@ namespace ProyectoIPC2.Controllers
             {
                 foreach (string colorpre in colorj1)
                 {
-                    if (casillas[a].Color == colorpre)
+                    if (Juego[a] == colorpre)
                     {
                         return true;
                     }
@@ -577,7 +564,7 @@ namespace ProyectoIPC2.Controllers
 
                 foreach (string colorpre in colorj2)
                 {
-                    if (casillas[a].Color == colorpre)
+                    if (Juego[a] == colorpre)
                     {
                         return true;
                     }
@@ -589,89 +576,108 @@ namespace ProyectoIPC2.Controllers
         //--------------------------------------------------------------------------------------------------------------
 
         // -------------------------------  FUNCION ENCARGADA  DE COLOREAR LOS BOTONES NUEVOS ------------------
-        public void Colorear(List<int> ind, string cl) {
+        public void Colorear(List<int> ind, string cl)
+        {
             List<int> indices = new List<int>();
             indices = ind;
-            /*string coloraplicar = "";
+            string coloraplicar = "";
 
             if (cl == "j2")
             {
-                coloraplicar = colorj1aux.First();
+                if (Coj1aux.Count() == 0)
+                {
+                    llenarcolores("j1");
+
+
+                }
+                coloraplicar = Coj1aux[0];
                 foreach (int i in indices)
                 {
-                    casillas[i].Color = coloraplicar;
+                    Juego[i] = coloraplicar;
                 }
-                colorj1aux.Remove(coloraplicar);
+                Coj1aux.RemoveAt(0);
             }
-            else {
-                coloraplicar = colorj2aux.First();
+            else
+            {
+                if (Coj2aux.Count() == 0)
+                {
+                    llenarcolores("j2");
+                }
+                coloraplicar = Coj2aux[0];
                 foreach (int i in indices)
                 {
-                    casillas[i].Color = coloraplicar;
+                    Juego[i] = coloraplicar;
                 }
-                colorj2aux.Remove(coloraplicar);
-            }*/
+                Coj2aux.RemoveAt(0);
+
+
+            }
         }
         //--------------------------------------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------------------------------------
 
-        // ------------------------------- INICIAR PARTIDA // PARTIDA NORMARL- NO PERSONALIZADA  ------------------
+        // ------------------------------- INICIAR PARTIDA // PARTIDA NORMARL- NO PERSONALIZADA  -----------------------
+        //--------------------------------------------------------------------------------------------------------------
         public ActionResult Iniciar1()
         {
 
-            int x1 = ((fil / 2) * (col / 2)) - 1;
-            int x2 = ((fil / 2) * (col / 2));
+            int x1 = ((fil / 2) * (col)) -(col/2)-1;
+            int x2 = ((fil / 2) * (col)) - (col / 2);
+            int x3 = x1 + col;
+            int x4 = x2 + col;
+            llenarcolores("j1");
+            string coloraplicar = Coj1aux[0];
+            Juego[x1] = coloraplicar;
+            Coj1aux.RemoveAt(0);
 
-            string coloraplicar = colorj1.First();
-            casillas[x1].Color =coloraplicar;
-            Iniciar2(x2);
-            ViewData["Columnas"] = col;
-            ViewData["filas"] = fil;
-            ViewData["salto"] = salto;
-            ViewBag.alfabeto = abecedario;
-            return View("Index", casillas);
+            if (Coj1aux.Count()==0) {
+                llenarcolores("j1");
+            }
+            coloraplicar = Coj1aux[0];
+            Juego[x4] = coloraplicar;
+            Coj1aux.RemoveAt(0);
+
+            llenarcolores("j2");
+            coloraplicar = Coj2aux[0];
+            Juego[x2] = coloraplicar;
+            Coj2aux.RemoveAt(0);
+
+            if (Coj2aux.Count() == 0)
+            {
+                llenarcolores("j2");
+            }
+            coloraplicar = Coj2aux[0];
+            Juego[x3] = coloraplicar;
+            Coj2aux.RemoveAt(0);
+            turno = "j1";
+
+            return RedirectToAction("Index");
         }
-        public ActionResult Iniciar2(int a)
-        {
-            int x3 = ((fil / 2) * (col / 2)) + fil;
-            int x4 = ((fil / 2) * (col / 2)) + fil + 1;
-            if (a==x4) {
-                string coloraplicar = colorj2.First();
-                casillas[x4].Color = coloraplicar;
-                ViewData["Columnas"] = col;
-                ViewData["filas"] = fil;
-                ViewData["salto"] = salto;
-                ViewBag.alfabeto = abecedario;
-                return View("Index", casillas);
+
+        //--------------------------------------------------------------------------------------------------------------
+        //-------------------------------------------LLENADO DE COLORES PARA CUALQUIER  MODALIDAD ---------------------------------------------
+
+
+        public void llenarcolores(string a) {
+
+            if (a == "j1")
+            {
+                for (int i = 0; i < colorj1.Count(); i++)
+                {
+                    Coj1aux.Add(colorj1[i]);
+                }
             }
             else {
-                string coloraplicar = colorj1.First();
-                casillas[a].Color = coloraplicar;
-                Iniciar3(x3);
-                casillas[a].Color = coloraplicar;
-                ViewData["Columnas"] = col;
-                ViewData["filas"] = fil;
-                ViewData["salto"] = salto;
-                ViewBag.alfabeto = abecedario;
-                return View("Index", casillas);
+                for (int i = 0; i < colorj2.Count(); i++)
+                {
+                    Coj2aux.Add(colorj2[i]);
+                }
+
             }
+        
+        
+        
         }
-        public ActionResult Iniciar3(int b)
-        {
-            int x4 = ((fil / 2) * (col / 2)) + fil + 1;
-            string coloraplicar = colorj2.First();
-            casillas[b].Color = coloraplicar;
-            Iniciar2(x4);
-            ViewData["Columnas"] = col;
-            ViewData["filas"] = fil;
-            ViewData["salto"] = salto;
-            ViewBag.alfabeto = abecedario;
-            return View("Index", casillas);
-
-        }
-
-        //--------------------------------------------------------------------------------------------------------------
-        //--------------------------------------------------------------------------------------------------------------
 
 
 

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="~/Content/Xtremecolores.css"
+    <link rel="stylesheet" href="~/Content/Xtremecolores.css" />
     
 </head>
 
@@ -53,76 +53,117 @@
         </section>
         <!--  FINALIZA SECCION  2-->
         <!--  INICIA  SECCION  3-->
-    <form method="post" action="@Url.Action("Index", "Othelloxtr")" id="form" name="form">
-        <section class="fila" id="section3">
-            <div class="col-lg-4">
-                <h2> USUARIO </h2>
-                <label for="colores"> Color de Fichas</label>
-                <br />
-                <select id="color1" name="color1" multiple="multiple">
-                    
-                    <option value=1 selected> Negro </option>
-                    <option value=2 > Rojo </option>
-                    <option value=3> Amarillo </option>
-                    <option value=4> Azul </option>
-                    <option value=5> Anaranjado </option>
-                </select>
+        <form method="post" action="@Url.Action("Index", "Othelloxtr")" id="form" name="form">
+            <section class="fila" id="section3">
+                <div class="col-lg-4">
+                    <h2> USUARIO </h2>
+                    <label for="colores"> Color de Fichas</label>
+                    <br />
+                    <select id="color1" name="color1" multiple="multiple">
 
-            </div>
+                        <option value=1 selected> Negro </option>
+                        <option value=2> Rojo </option>
+                        <option value=3> Amarillo </option>
+                        <option value=4> Azul </option>
+                        <option value=5> Anaranjado </option>
+                    </select>
 
-            <div class="col-lg-2" id="size">
-                <label for="columnas"> Columnas</label>
-                <select  id="columnas" name="columnas">
-                    @{
-                        for (int i = 6; i < 21; i += 2)
-                        {
-                            <option value=@i name="columna">@i</option>
+                </div>
+
+                <div class="col-lg-2" id="size">
+                    <label for="columnas"> Columnas</label>
+                    <select id="columnas" name="columnas">
+                        @{
+                            for (int i = 6; i < 21; i += 2)
+                            {
+                                <option value=@i name="columna">@i</option>
+                            }
                         }
-                    }
-                </select>
-            </div>
-            <div class="col-lg-2" id="size">
-                <label for="fil"> Filas</label>
-                <select  id="filas" name="filas">
-                    @{
-                        for (int i = 6; i < 21; i += 2)
-                        {
-                            <option value=@i name="fila">@i</option>
+                    </select>
+                </div>
+                <div class="col-lg-2" id="size">
+                    <label for="fil"> Filas</label>
+                    <select id="filas" name="filas">
+                        @{
+                            for (int i = 6; i < 21; i += 2)
+                            {
+                                <option value=@i name="fila">@i</option>
+                            }
                         }
-                    }
-                </select>
-            </div>
-            <div class="col-lg-4">
-                <h2> USUARIO INVITADO  </h2>
-                <label for="colore"> Color de Fichas</label>
-                <br />
-                <select id="color2" name="color2" multiple="multiple">
-                    <option value=6 selected> Blanco </option>
-                    <option value=7> Verde </option>
-                    <option value=8> Violeta </option>
-                    <option value=9> Celeste </option>
-                    <option value=10> Gris </option>
-                </select>
-            </div>
-        </section>
-        <!--  FINALIZA SECCION  3-->
-        <!--  INICIA SECCION  4 -->
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <h2> USUARIO INVITADO  </h2>
+                    <label for="colore"> Color de Fichas</label>
+                    <br />
+                    <select id="color2" name="color2" multiple="multiple">
+                        <option value=6 selected> Blanco </option>
+                        <option value=7> Verde </option>
+                        <option value=8> Violeta </option>
+                        <option value=9> Celeste </option>
+                        <option value=10> Gris </option>
+                    </select>
+                </div>
+            </section>
+            <!--  FINALIZA SECCION  3-->
+            <section class="fila" id="seccion5">
+                <div class="col-lg-3">
+                    <p></p>
+                </div>
+                <div class="col-lg-6">
 
-        <section class="fila" id="seccion5">
-            <div class="col-lg-4">
-                <label>  </label>
-            </div>
-            <div class="col-lg-4">
-                <button type="submit" name="a">
-                    Iniciar Partida
-                </button>
-            </div>
-            <div class="col-lg-4">
-                <label>  </label>
-            </div>
 
-        </section>
-    </form>
+                    <input type="radio" id="apersonalizada"
+                           name="modalidad" value="personalizada">
+                    <label for="apersonalizada">Apertura Personalizada</label>
+
+                    <input type="radio" id="normal"
+                           name="modalidad" value="normal" checked>
+                    <label for="contactChoice3">Modalidad Othello Normal </label>
+                </div>
+                <div class="col-lg-3">
+                    <p></p>
+                </div>
+            </section>
+            <br />
+
+            <!-------------------------   -->
+            <section class="fila" id="seccion6">
+                <div class="col-lg-3">
+                    <p></p>
+                </div>
+                <div class="col-lg-6">
+                    <input type="radio" id="inverso"
+                           name="opcion" value="inverso">
+                    <label for="inverso">Modalidad Inversa</label>
+                    <input type="radio" id="normal"
+                           name="opcion" value="normal" checked>
+                    <label for="normal">Modalidad Normal </label>
+
+
+                </div>
+                <div class="col-lg-3">
+                    <p></p>
+                </div>
+            </section>
+
+            <br />
+            <!--  INICIA SECCION  6 -->
+            <section class="fila" id="seccion7">
+                <div class="col-lg-4">
+                    <label>  </label>
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit" name="a">
+                        Iniciar Partida
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <label>  </label>
+                </div>
+
+            </section>
+        </form>
     </div>
    
 

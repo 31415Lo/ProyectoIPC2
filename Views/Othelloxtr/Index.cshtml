@@ -36,7 +36,7 @@
     <html>
     <head>
         <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" href="~/Content/coloresxtreme.css"
+        <link rel="stylesheet" href="~/Content/coloresxtreme.css" />
         <title>Index</title>
     </head>
 
@@ -46,8 +46,25 @@
             <!-- Contenedor Principal -->
             <header class="fila">
                 <!-- seccion del header donde va el logo-->
-                <div id="logo" class="col-lg-2"> <!--img src="~/images/logo.jpg" width="25"  height="25"--> <p></p></div>
-                <div id="titulo" class="col-lg-6"><p></p> </div>
+                <div id="logo" class="col-lg-2">
+                    <label>Ganador:</label> @ViewBag.Ganador
+                </div>
+                <div id="logo" class="col-lg-6">
+                    @{
+                        if (ViewBag.Turno == "j1")
+                        {
+                            <label>Turno: USUARIO</label>
+                        }
+                        else
+                        {
+
+                            <label>Turno:@ViewBag.Invitado</label>
+                        }
+
+                    }
+
+
+                </div>
                 <div id="usuario" class="col-lg-3"> <p></p></div>
                 <div id="salir" class="col-lg-1">
                     <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
@@ -131,7 +148,7 @@
                         for (int i = 0; i < filas; i++)
                         {
 
-                            <div id="columna"><h2>@(i+1)</h2> </div>
+                            <div id="columna"><h2>@(i + 1)</h2> </div>
                         }
                     }
                 </div>
@@ -156,7 +173,7 @@
                                 contar += 1;
                                 <div class="cont">
                                     <button type="submit" value=@i class="hid" name="a">
-                                        <div class="inside @Model[i].Color">
+                                        <div class="inside @ViewBag.Juego[i]">
                                         </div>
                                     </button>
                                 </div>
@@ -170,7 +187,7 @@
                         for (int i = 0; i < filas; i++)
                         {
 
-                            <div id="columna"><h1>@(i+1)</h1> </div>
+                            <div id="columna"><h1>@(i + 1)</h1> </div>
                         }
                     }
                 </div>
@@ -191,11 +208,46 @@
                 </div>
             </section>
             <!--  TERMINA LA SECCION DONDE TERMINA  VA EL ABECEDARIO DE PIE DEL TABLERO-->
+            <!-- DONDE VAN EL FOODER O LOS DATOS PERSONALES-->
+            <section id="seccion5">
 
-            <section id="seccion5"> <!-- DONDE VAN EL FOODER O LOS DATOS PERSONALES--></section>
-       
 
-    </body>
+                <div class="col-lg-5">
+                    <center>
+                        <h3> Usuario</h3>
+                        <label>Movimientos:</label> @ViewBag.Mov1
+                    </center>
+                    <center>
+                        <h3> Punteo</h3>
+                        <label>Punteo:</label> @ViewBag.Punteo1
+                    </center>
+                    <center>
+                        <h3> Colores </h3>
+                        @{
+                            foreach (var col in ViewBag.Color1)
+                            {
+                                <div class="cont">
+                                        <div class="inside @col">
+                                        </div>
+                                </div>
+                            }
+
+
+                        }
+
+                    </center>
+
+                </div>
+
+
+
+
+
+
+            </section>
+
+
+</body>
     @if (ViewBag.ShowAlert != null)
     {
         <script>alert("Movimiento no valido");</script>
