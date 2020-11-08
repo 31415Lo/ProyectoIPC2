@@ -67,7 +67,7 @@
                 </div>
                 <div id="usuario" class="col-lg-3"> <p></p></div>
                 <div id="salir" class="col-lg-1">
-                    <button type="submit" onclick="location.href='@Url.Action("Menujuego", "Login")'"> Salir </button>
+                    <button type="submit" onclick="location.href='@Url.Action("Index", "OthelloxtrColores")'"> Salir </button>
                 </div>
             </header>
             <nav class="fila">
@@ -86,7 +86,7 @@
                         </li>
                     }
 
-                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Archivosxml"))
+                    @using (Html.BeginForm(actionName: "Limpiar", controllerName: "Othelloxtr"))
                     {
                         <li class="col-lg-1">
                             <button type="submit" value=27>

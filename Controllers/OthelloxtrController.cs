@@ -215,7 +215,7 @@ namespace ProyectoIPC2.Controllers
         public ActionResult Jugar(string a)
         {
 
-            if (!appvalidado) {
+            if (appvalidado==false) {
                 int aux = Int32.Parse(a);
                 APersonalizadaTablero(aux);
             }
@@ -645,6 +645,7 @@ namespace ProyectoIPC2.Controllers
                 turno = "j1";
 
             } else {
+                appvalidado = true;
                 int x1 = ((fil / 2) * (col)) - (col / 2) - 1;
                 int x2 = ((fil / 2) * (col)) - (col / 2);
                 int x3 = x1 + col;
@@ -841,6 +842,19 @@ namespace ProyectoIPC2.Controllers
             }
 
 
+        }
+
+        public ActionResult Limpiar() {
+
+            for (int i=0; i<Juego.Count();i++) {
+
+                Juego[i] = null;
+            
+            }
+
+
+
+            return RedirectToAction("Index");
         }
 
 
