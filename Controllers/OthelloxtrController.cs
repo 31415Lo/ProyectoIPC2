@@ -11,7 +11,7 @@ namespace ProyectoIPC2.Controllers
     {
 
         static readonly List<Othelloxtreme> casillas = new List<Othelloxtreme>();
-      
+
         //-------------------- VARIABLES AGREGADOS RECIENTEMETE---------
 
         static int col = 0;
@@ -19,7 +19,8 @@ namespace ProyectoIPC2.Controllers
         static int tamaño = 0;
         static int salto = 0;
         static List<string> Juego = new List<string>(); //-------------------- PRUEBA CON ESTA LISTA PARA COLOREAR LAS FICHAS
-        static List<string> abecedario = new List<string>(); 
+        static List<int> front = new List<int>();
+        static List<string> abecedario = new List<string>();
         static List<string> colorj1 = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1"
         static List<string> colorj2 = new List<string>();//-- CORRESPONDE  A LOS COLORES DEL JUGADOR INVITADO O JUGADOR 2  "j2"
         static List<string> Coj1aux = new List<string>(); //-- CORRESPONDE  A LOS COLORES DEL USUARIO O JUGADOR 1 "j1aux" VACIADO Y REASIGNADO
@@ -29,8 +30,11 @@ namespace ProyectoIPC2.Controllers
         static string Invitado = "";
         static int Mov1 = 0;
         static int Mov2 = 0;
+        static int punteo1 = 0;
+        static int punteo2 = 0;
         static string ModalidadColores = "";   // ------- PUEDE SER DE APERTURA PERSONALIZADA O APERTURA NORMAL 
         static string ModalidadPartida = "";  // -------- PUEDE SER DEL MODO INVERSO O DEL MODO NORMAL 
+        static bool appvalidado = false;
 
         /*
         static string col1 = ""; //"black"
@@ -48,7 +52,7 @@ namespace ProyectoIPC2.Controllers
         // GET: Othelloxtreme
         public ActionResult Index()
         {
-            
+
             ViewData["Columnas"] = col;
             ViewData["filas"] = fil;
             ViewData["salto"] = salto;
@@ -61,13 +65,15 @@ namespace ProyectoIPC2.Controllers
             ViewBag.Invitado = Invitado;
             ViewBag.Mov1 = Mov1;
             ViewBag.Mov2 = Mov2;
+            ViewBag.Punteo1 = punteo1;
+            ViewBag.Punteo2 = punteo2;
             return View(casillas);
         }
 
         [HttpPost]
         public ActionResult Index(IList<int> color1, IList<int> color2, int columnas, int filas, string modalidad, string opcion, string nombre)
         {
-          
+
             col = columnas;
             fil = filas;
             tamaño = col * filas;
@@ -75,12 +81,12 @@ namespace ProyectoIPC2.Controllers
             ModalidadPartida = opcion; // ----- MODALIDAD INVERSO O NORMAL 
             Invitado = nombre;
             //Othelloxtreme lec = new Othelloxtreme();
-            for (int i = 0; i <tamaño; i++)
+            for (int i = 0; i < tamaño; i++)
             {
 
                 string c = null;
                 Juego.Add(c);
-               // lec.Index = 0;
+                // lec.Index = 0;
                 //casillas.Add(lec);
             }
 
@@ -171,11 +177,9 @@ namespace ProyectoIPC2.Controllers
 
             }
             llenar();
-            ViewData["Columnas"] = col;
-            ViewData["filas"] = fil;
-            ViewData["salto"] = salto;
-            ViewBag.alfabeto = abecedario;
-            
+            Frontera();
+
+
             //return View( casillas);
             return RedirectToAction("Index");
         }
@@ -210,6 +214,12 @@ namespace ProyectoIPC2.Controllers
         //----------------------------------------------------------------------------------------------------------------------
         public ActionResult Jugar(string a)
         {
+
+            if (!appvalidado) {
+                int aux = Int32.Parse(a);
+                APersonalizadaTablero(aux);
+            }
+            else { 
             List<int> general = new List<int>();
             List<int> aux = new List<int>();
             List<string> coloraux1 = new List<string>(); //--- COLORES A VERIFICAR 
@@ -218,17 +228,7 @@ namespace ProyectoIPC2.Controllers
             int x1 = Int32.Parse(a);
             int Index = x1;
 
-            if (turno == "j1")
-            {
-                
-                turno = "j2"; // SE CAMBIA EL TURNO PARA EL JUGADOR DOS 
 
-            }
-            else
-            {
-               
-                turno = "j1"; // SE CAMBIA EL TURNO PARA EL JUGADOR UNO
-            }
             //------------------------------------------------------------------------------------------------------------------
             //---------------------------VERIFICAR QUE EL INDEX NO CONTENGA NINGUN COLOR YA EXISTENTE---------------------------
 
@@ -245,6 +245,22 @@ namespace ProyectoIPC2.Controllers
 
             else
             {
+
+                if (turno == "j1")
+                {
+
+                    turno = "j2"; // SE CAMBIA EL TURNO PARA EL JUGADOR DOS 
+                    Mov1 += 1;
+
+                }
+                else
+                {
+
+                    turno = "j1"; // SE CAMBIA EL TURNO PARA EL JUGADOR UNO
+                    Mov2 += 1;
+                }
+
+
                 // ----------------------------- POSICION X1  (x1-1)----------------------------------
                 x1 = Index;
                 while (Validarfrontera(x1))
@@ -267,16 +283,16 @@ namespace ProyectoIPC2.Controllers
                     }
                 }
 
-                // ----------------------------- POSICION X2  (x1-(fila+1))----------------------------------
+                // ----------------------------- POSICION X2  (x1-(columna+1))----------------------------------
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 -(fil+1), turno))
+                    if (ValidaColores(x1 - (col + 1), turno))
                     {
-                        aux.Add(x1 - (fil + 1));
-                        x1 -= (fil + 1);
+                        aux.Add(x1 - (col + 1));
+                        x1 -= (col + 1);
                     }
-                    else if (ValidaColores2(x1 - (fil + 1), turno))
+                    else if (ValidaColores2(x1 - (col + 1), turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -295,12 +311,12 @@ namespace ProyectoIPC2.Controllers
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 -fil, turno))
+                    if (ValidaColores(x1 - col, turno))
                     {
-                        aux.Add(x1 -fil);
-                        x1 -= fil;
+                        aux.Add(x1 - col);
+                        x1 -= col;
                     }
-                    else if (ValidaColores2(x1 - fil, turno))
+                    else if (ValidaColores2(x1 - col, turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -319,12 +335,12 @@ namespace ProyectoIPC2.Controllers
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 - (fil - 1), turno))
+                    if (ValidaColores(x1 - (col - 1), turno))
                     {
-                        aux.Add(x1 - (fil - 1));
-                        x1 -= (fil - 1);
+                        aux.Add(x1 - (col - 1));
+                        x1 -= (col - 1);
                     }
-                    else if (ValidaColores2(x1 - (fil - 1), turno))
+                    else if (ValidaColores2(x1 - (col - 1), turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -346,7 +362,7 @@ namespace ProyectoIPC2.Controllers
                     if (ValidaColores(x1 + 1, turno))
                     {
                         aux.Add(x1 + 1);
-                        x1 +=1;
+                        x1 += 1;
                     }
                     else if (ValidaColores2(x1 + 1, turno))
                     {
@@ -367,12 +383,12 @@ namespace ProyectoIPC2.Controllers
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 + (fil+ 1), turno))
+                    if (ValidaColores(x1 + (col + 1), turno))
                     {
-                        aux.Add(x1 + (fil + 1));
-                        x1 += (fil + 1);
+                        aux.Add(x1 + (col + 1));
+                        x1 += (col + 1);
                     }
-                    else if (ValidaColores2(x1 + (fil + 1), turno))
+                    else if (ValidaColores2(x1 + (col + 1), turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -391,12 +407,12 @@ namespace ProyectoIPC2.Controllers
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 + fil, turno))
+                    if (ValidaColores(x1 + col, turno))
                     {
-                        aux.Add(x1 + fil);
-                        x1 += fil;
+                        aux.Add(x1 + col);
+                        x1 += col;
                     }
-                    else if (ValidaColores2(x1 + fil, turno))
+                    else if (ValidaColores2(x1 + col, turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -415,12 +431,12 @@ namespace ProyectoIPC2.Controllers
                 x1 = Index;
                 while (Validarfrontera(x1))
                 {
-                    if (ValidaColores(x1 + (fil-1), turno))
+                    if (ValidaColores(x1 + (col - 1), turno))
                     {
-                        aux.Add(x1 + (fil - 1));
-                        x1 += (fil - 1);
+                        aux.Add(x1 + (col - 1));
+                        x1 += (col - 1);
                     }
-                    else if (ValidaColores2(x1 + (fil - 1), turno))
+                    else if (ValidaColores2(x1 + (col - 1), turno))
                     {
                         foreach (int ele in aux)
                         {
@@ -449,55 +465,56 @@ namespace ProyectoIPC2.Controllers
             else
             {
                 //--- AGREGAR LA OPCION DE VALIDAR  LAS OPCION DE CAMBIAR EL TURNO.
-                
-                return  RedirectToAction("Index");
-               
-            }
+                Modpartida();
+                return RedirectToAction("Index");
 
+            }
+                Modpartida();
+                return RedirectToAction("Index");
+            }
+            
             return RedirectToAction("Index");
 
         }
 
         //--------------------------------------------------------------------------------------------------------------
         //---------------------------------- LISTA ENCARGADA DE RECORRER LAS FRONTERAS DEL TABLERO ---------------------
-        public List<int> Frontera()
+        public void Frontera()
         {
-            List<int> frontera = new List<int>();
+
             //------- PRIMERA FRONTERA, FILA SUPERIOR
-            for (int i=0;i<fil;i++) {
-                frontera.Add(i);
+            for (int i = 0; i < col; i++) {
+                front.Add(i);
             }
             // ------------ SEGUNDA FRONTERA, FRONTERA INFERIOR 
-            for (int i = (tamaño-1); i>(tamaño-(fil+1)); i--)
+            for (int i = (tamaño - 1); i > (tamaño - (col + 1)); i--)
             {
-                frontera.Add(i);
+                front.Add(i);
             }
             // ------------ TERCERA FRONTERA, FRONTERA IZQUIERDA
-            for (int i =fil; i <(tamaño-fil); i++)
+            for (int i = col; i < (tamaño - col); i += col)
             {
-                frontera.Add(i);
+                front.Add(i);
             }
             // ------------ CUARTA FRONTERA, FRONTERA DERECHA
-            for (int i = fil; i < (tamaño - fil); i++)
+            for (int i = (col - 1); i < (tamaño - col); i += (col))
             {
-                frontera.Add(i);
+                front.Add(i);
             }
-            return frontera;
         }
         //--------------------------------------------------------------------------------------------------------------
         // -------------------------------  FUNCION ENCARGADA DE VALIDAR LAS FRONTERAS   -------------------------------
         public bool Validarfrontera(int a) {
-            List<int> frontera = new List<int>();
-            frontera = Frontera();
-            foreach (int i in frontera) {
-                if (a==i) {
+
+            foreach (int i in front) {
+                if (a == i) {
                     return false;
                 }
             }
             return true;
         }
         //--------------------------------------------------------------------------------------------------------------
-       
+
         //--------------------------------------------------------------------------------------------------------------
         // -------------------------------  FUNCION ENCARGADA VERFICIAR SI EL INDEX ES VALIDO CON EL COLOR ------------------
         public bool validarindex(int a) {
@@ -520,7 +537,7 @@ namespace ProyectoIPC2.Controllers
 
         //--------------------------------------------------------------------------------------------------------------
         // -------------------------------  FUNCION ENCARGADA VERFICIAR SI EL INDEX ES VALIDO CON EL COLOR ------------------
-        public bool ValidaColores(int a,string turn) {
+        public bool ValidaColores(int a, string turn) {
 
             if (turn == "j2")
             {
@@ -621,35 +638,45 @@ namespace ProyectoIPC2.Controllers
         public ActionResult Iniciar1()
         {
 
-            int x1 = ((fil / 2) * (col)) -(col/2)-1;
-            int x2 = ((fil / 2) * (col)) - (col / 2);
-            int x3 = x1 + col;
-            int x4 = x2 + col;
-            llenarcolores("j1");
-            string coloraplicar = Coj1aux[0];
-            Juego[x1] = coloraplicar;
-            Coj1aux.RemoveAt(0);
-
-            if (Coj1aux.Count()==0) {
+            if (ModalidadColores == "personalizada") {
                 llenarcolores("j1");
-            }
-            coloraplicar = Coj1aux[0];
-            Juego[x4] = coloraplicar;
-            Coj1aux.RemoveAt(0);
-
-            llenarcolores("j2");
-            coloraplicar = Coj2aux[0];
-            Juego[x2] = coloraplicar;
-            Coj2aux.RemoveAt(0);
-
-            if (Coj2aux.Count() == 0)
-            {
                 llenarcolores("j2");
+                Appersonalizada();
+                turno = "j1";
+
+            } else {
+                int x1 = ((fil / 2) * (col)) - (col / 2) - 1;
+                int x2 = ((fil / 2) * (col)) - (col / 2);
+                int x3 = x1 + col;
+                int x4 = x2 + col;
+                llenarcolores("j1");
+                string coloraplicar = Coj1aux[0];
+                Juego[x1] = coloraplicar;
+                Coj1aux.RemoveAt(0);
+
+                if (Coj1aux.Count() == 0)
+                {
+                    llenarcolores("j1");
+                }
+                coloraplicar = Coj1aux[0];
+                Juego[x4] = coloraplicar;
+                Coj1aux.RemoveAt(0);
+
+                llenarcolores("j2");
+                coloraplicar = Coj2aux[0];
+                Juego[x2] = coloraplicar;
+                Coj2aux.RemoveAt(0);
+
+                if (Coj2aux.Count() == 0)
+                {
+                    llenarcolores("j2");
+                }
+                coloraplicar = Coj2aux[0];
+                Juego[x3] = coloraplicar;
+                Coj2aux.RemoveAt(0);
+                turno = "j1";
             }
-            coloraplicar = Coj2aux[0];
-            Juego[x3] = coloraplicar;
-            Coj2aux.RemoveAt(0);
-            turno = "j1";
+            
 
             return RedirectToAction("Index");
         }
@@ -674,16 +701,147 @@ namespace ProyectoIPC2.Controllers
                 }
 
             }
-        
-        
-        
+
+
+
         }
 
 
+        //------------------------------------------ SE DEFINE EL RETO INVERSO----------------------------------
+        public void Modpartida() {
+            int cantida1 = 0;
+            int cantidad2 = 0;
+
+            for (int i = 0; i < Juego.Count(); i++) {
+                foreach (string c in colorj1) {
+                    if (Juego[i] == c) {
+                        cantida1 += 1;
+                    }
+                }
+                foreach (string c in colorj2)
+                {
+                    if (Juego[i] == c)
+                    {
+                        cantidad2 += 1;
+                    }
+                }
+
+            }
 
 
+            punteo1 = cantida1;
+            punteo2 = cantidad2;
+            if (ModalidadPartida == "inverso") {
+                if (cantida1 > cantidad2)
+                {
+                    Ganador = Invitado;
+                }
+                else if (cantidad2 > cantida1)
+                {
+                    Ganador = "Usuario";
+                }
+                else {
+                    Ganador = " Empate";
+                }
+            }
+            else {
+                if (cantida1 > cantidad2)
+                {
+
+                    Ganador = "Usuario";
+                }
+                else if (cantidad2 > cantida1)
+                {
+                    Ganador = Invitado;
+                }
+                else
+                {
+                    Ganador = " Empate";
+                }
+
+            }
 
 
+        }
+
+
+        public void Appersonalizada(){
+            int x1 = ((fil / 2) * (col)) - (col / 2) - 1;
+            int x2 = ((fil / 2) * (col)) - (col / 2);
+            int x3 = x1 + col;
+            int x4 = x2 + col;
+            Juego[x1]= "cafe";
+            Juego[x2] = "cafe";
+            Juego[x3] = "cafe";
+            Juego[x4] = "cafe";
+            turno = "j1";
+        }
+
+        public void APersonalizadaTablero(int a) {
+            int x1 = ((fil / 2) * (col)) - (col / 2) - 1;
+            int x2 = ((fil / 2) * (col)) - (col / 2);
+            int x3 = x1 + col;
+            int x4 = x2 + col;
+            string coloraplicar = "";
+
+            if (a == x1 || a == x2 || a == x3 || a == x4)
+            {
+                if (turno == "j1")
+                {
+                    if (Juego[a] == "cafe")
+                    {
+                        if (Coj1aux.Count() == 0)
+                        {
+                            llenarcolores("j1");
+                        }
+                        coloraplicar = Coj1aux[0];
+                        Juego[a] = coloraplicar;
+                        Coj1aux.RemoveAt(0);
+                        turno = "j2";
+                        Ganador = "";
+                    }
+                    else {
+                        turno = "j1";
+                        Ganador = "";
+                    }
+
+                }
+                else
+                {
+                    if (Juego[a] == "cafe")
+                    {
+                        if (Coj2aux.Count() == 0)
+                        {
+                            llenarcolores("j2");
+                        }
+                        coloraplicar = Coj2aux[0];
+                        Juego[a] = coloraplicar;
+                        Coj2aux.RemoveAt(0);
+                        turno = "j1";
+                        Ganador = "";
+                    }
+                    else {
+                        turno = "j2";
+                        Ganador = "";
+                    }
+                }
+            }
+            else
+            {
+                Ganador = "MOVIMIENTO NO VALIDO";
+            }
+
+            // validar si se cumpliero las 4 casillas iniciales 
+
+            if (Juego[x1] != "cafe" && Juego[x2] != "cafe" && Juego[x3] != "cafe" && Juego[x4] != "cafe") {
+                appvalidado = true;
+            }
+            else {
+                appvalidado = false;
+            }
+
+
+        }
 
 
 

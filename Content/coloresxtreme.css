@@ -172,10 +172,10 @@ nav ul li input {
     background: orange !important;
 }
 .green {
-    background: #1e5945 !important;
+    background: green !important;
 }
 .azure {
-    background: azure !important;
+    background: DEEPSKYBLUE !important;
 }
 .grey {
     background: grey !important;
@@ -184,13 +184,17 @@ nav ul li input {
     background: violet !important;
 }
 
+.cafe {
+    background: BROWN !important;
+}
+
 .inside {
     border-radius: 50px;
     width: 46.5px;
-    height:47px;
+    height: 47px;
 }
 .hid {
-    background: green;
+    background: #035309;
     width: 57px;
     height: 57px;
 }

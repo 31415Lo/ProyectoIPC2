@@ -55,7 +55,7 @@
                         {
                             <label>Turno: USUARIO</label>
                         }
-                        else
+                        else if(ViewBag.Turno == "j2")
                         {
 
                             <label>Turno:@ViewBag.Invitado</label>
@@ -227,16 +227,38 @@
                             foreach (var col in ViewBag.Color1)
                             {
                                 <div class="cont">
-                                        <div class="inside @col">
-                                        </div>
+                                    <div class="inside @col">
+                                    </div>
                                 </div>
                             }
-
-
                         }
-
                     </center>
+                </div>
+                <div class="col-lg-2">
 
+                    <p> </p>
+                </div>
+                <div class="col-lg-5">
+                    <center>
+                        <h3> @ViewBag.Invitado</h3>
+                        <label>Movimientos:</label> @ViewBag.Mov2
+                    </center>
+                    <center>
+                        <h3> Punteo</h3>
+                        <label>Punteo:</label> @ViewBag.Punteo2
+                    </center>
+                    <center>
+                        <h3> Colores </h3>
+                        @{
+                            foreach (var col in ViewBag.Color2)
+                            {
+                                <div class="cont">
+                                    <div class="inside @col">
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </center>
                 </div>
 
 
@@ -248,6 +270,7 @@
 
 
 </body>
+
     @if (ViewBag.ShowAlert != null)
     {
         <script>alert("Movimiento no valido");</script>
